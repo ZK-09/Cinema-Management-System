@@ -4,5 +4,10 @@
 using namespace std;
 
 void login();
-void menu();
+
+
+
+//#endif // !1
+
+
 

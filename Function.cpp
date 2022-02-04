@@ -13,7 +13,7 @@ struct Movie {
 	Movie* nextAddress;
 	Movie* previous;
 
-}*movieHead, * movieTail;
+} /**movieHead, * movieTail*/;
 
 struct Ticket {
 
@@ -25,7 +25,7 @@ struct Ticket {
 	Ticket* nextAddress;
 	Ticket* previous;
 
-}*ticketHead, * ticketTail;
+}/**ticketHead, * ticketTail*/;
 
 //Constructor of Movie & Ticket node
 Movie* createMovieNode(string id, string name, string date, string time, float duration, int seat, int hall) {
@@ -41,7 +41,7 @@ Movie* createMovieNode(string id, string name, string date, string time, float d
 
 	newMovie->nextAddress = NULL;
 	newMovie->previous = NULL;
-
+	
 	return newMovie;
 }
 
@@ -74,11 +74,81 @@ void login() {
 	if ((username == "Admin") && (password == "Admin")) {
 
 		system("CLS");
+		//Call Admin Menu (Manage Movie)
 
+	} else {
+
+		system("CLS");
+		//Call Customer Menu (Purchase Ticket)
 	}
 
 }
 
-void menu() {
+//Admin Menu Function
+void MainMenuAdmin() {
+	cout << "HI";
+}
+
+//Customer Menu Function
+void MainMenuCustomer() {
+
+}
+
+/* Admin Management Functions (Movie Management) */
+
+//Add Movie
+void AddMovie() {
+
+}
+
+//Display Movie
+void DisplayMoive() {
+
+}
+
+//Search Movie
+void SearchMovie(string keyword) {
+
+}
+
+//Filter Movie
+void FilterMovi(string keywordFilter) {
+
+}
+
+//Update Movie Information
+void UpdateMovie() {
+
+}
+
+//Sort Movie based on quantity
+void SortMovie() {
+
+}
+
+//Delete Movie from Movie List
+void DeleteMovie() {
+
+}
+
+/* Customer Purchasing Functions (Purchasing Ticket) */
+
+//Purchase Ticket
+void TicketPurchase(string id, string seat, string movieId) {
+
+}
+
+//View Purchase Transactions
+void ViewTicket() {
+
+}
+
+//Sort Purchase Transaction based on total price
+void SortTicketPrice(string idd, string seat, string movieId) {
+
+}
+
+//View Purchase Details
+void DisplayDetail() {
 
 }

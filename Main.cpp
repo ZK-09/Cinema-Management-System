@@ -1,8 +1,8 @@
-#include "Function.cpp"
+#include "Header.h"
 
 int main() {
-
-	login();
 	
+	login();
+	cout << "Hello";
 	return 0;
 }
