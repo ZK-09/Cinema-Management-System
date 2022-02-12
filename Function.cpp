@@ -1,5 +1,6 @@
 #include "Header.h"
 
+// Assumption that all the data is pre-sorted
 struct Movie {
 
 	string movieId;			//The Id of the movie
@@ -13,7 +14,7 @@ struct Movie {
 	Movie* nextAddress;
 	Movie* previous;
 
-} *movieHead, * movieTail;
+} *movieHead, * movieTail, *newMovieHead, *newMovieTail;
 
 struct Ticket {
 
@@ -172,8 +173,68 @@ void MainMenuCustomer() {
 
 /* Admin Management Functions (Movie Management) */
 
-//Add Movie
-void AddMovie() {
+//Add Movie --> Insert into sorted list
+void AddMovie(string id, string name, string date, string time, float duration, int seat, int hall) {
+	
+	cout << "Enter Movie Id : ";
+	cin >> id;
+
+	cout << "Enter Movie Name : ";
+	cin >> name;
+
+	cout << "Enter Movie Date : ";
+	cin >> date;
+
+	cout << "Enter Movie Time : ";
+	cin >> time;
+
+	cout << "Enter Movie Duration : ";
+	cin >> duration;
+
+	cout << "Enter Movie Seat : ";
+	cin >> seat;
+
+	cout << "Enter Movie Hall : ";
+	cin >> hall;
+
+	Movie* newNode = createMovieNode(id, name, date, time, duration, seat, hall);
+
+	newNode->nextAddress = NULL;
+	newNode->previous = NULL;
+
+	//Sorted list still do not have any item
+	if (movieHead == NULL) {
+
+		newMovieHead = newMovieTail = newNode;
+
+	} else if (id < newMovieHead->movieId) {	//If movieID is smaller than the head value
+		newNode->nextAddress = newMovieHead;
+		newMovieHead->previous = newNode;
+		newMovieHead = newNode;
+
+	} else if (id > newMovieTail->movieId){		//If movieId is greater than the head value
+		newMovieTail->nextAddress = newNode;
+		newNode->previous = newMovieTail;
+		newMovieTail = newNode;
+
+	} else {
+		Movie* current = newNode->nextAddress;	//Insert in the middle of the list
+
+		while (current != NULL) {
+
+			if (id < current->movieId) {
+				break;
+			}
+
+			current = current->nextAddress;
+		}
+
+		current->previous->nextAddress = newNode;
+		newNode->previous = current->previous;
+		current->previous = newNode;
+		newNode->nextAddress = current;
+
+	}
 
 }
 
@@ -209,7 +270,7 @@ void DeleteMovie() {
 
 /* Customer Purchasing Functions (Purchasing Ticket) */
 
-//Purchase Ticket
+//Purchase Ticket --> Add Purchase
 void TicketPurchase(string id, string seat, string movieId) {
 
 }
