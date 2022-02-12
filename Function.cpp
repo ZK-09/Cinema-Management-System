@@ -13,7 +13,7 @@ struct Movie {
 	Movie* nextAddress;
 	Movie* previous;
 
-} /**movieHead, * movieTail*/;
+} *movieHead, * movieTail;
 
 struct Ticket {
 
@@ -25,7 +25,7 @@ struct Ticket {
 	Ticket* nextAddress;
 	Ticket* previous;
 
-}/**ticketHead, * ticketTail*/;
+}*ticketHead, * ticketTail;
 
 //Constructor of Movie & Ticket node
 Movie* createMovieNode(string id, string name, string date, string time, float duration, int seat, int hall) {
