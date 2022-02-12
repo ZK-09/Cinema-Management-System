@@ -132,11 +132,42 @@ void MainMenuAdmin() {
 			break;
 		}
 	}*/
+	
 }
 
 //Customer Menu Function
 void MainMenuCustomer() {
+	/*cout << "||======================================================||\n";
+	cout << "||\t    GRANDPLEX MOVIE TICKETING SYSTEM\t\t||\n";
+	cout << "||======================================================||\n";
+	cout << "||\t\t\tMENU\t\t\t\t||\n";
+	cout << "||======================================================||\n";
+	cout << "||1.Add Purchase\t\t\t\t\t\t||\n";
+	cout << "||2.View Purchase\t\t\t\t\t||\n";
+	cout << "||3.Sort Purchases\t\t\t\t\t||\n";
+	cout << "||4.Purchase Detail\t\t\t\t\t||\n";
+	cout << "||======================================================||\n\n";
 
+	int choice;
+
+	do
+	{
+		cout << "Enter selection\n";
+		cin >> choice;
+		switch (choice)
+		{
+		case 1: TicketPurchase();
+			break;
+		case 2: ViewTicket();
+			break;
+		case 3: SortTicketPrice();
+			break;
+		case 4: DisplayDetail();
+			break;
+		default: cout << "Invalid, Please Try Again";
+			break;
+		}
+	}*/
 }
 
 /* Admin Management Functions (Movie Management) */
