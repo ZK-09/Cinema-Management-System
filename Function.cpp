@@ -218,6 +218,7 @@ void AddMovie(string id, string name, string date, string time, float duration, 
 		newMovieTail = newNode;
 
 	} else {
+		
 		Movie* current = newNode->nextAddress;	//Insert in the middle of the list
 
 		while (current != NULL) {
@@ -256,6 +257,15 @@ void FilterMovie(string keywordFilter) {
 //Update Movie Information
 void UpdateMovie() {
 
+	//Get user input to update which part of the movie
+	cout << "Select the information to update" << endl;
+	cout << "1. Movie ID" << endl;
+	cout << "2. Movie Name" << endl;
+	cout << "3. Movie Date" << endl;
+	cout << "4. Movie Time" << endl;
+	cout << "5. Movie Duration" << endl;
+	cout << "6. No of Seat" << endl;
+	cout << "7. Movie Hall" << endl;
 }
 
 //Sort Movie based on quantity
