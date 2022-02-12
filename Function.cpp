@@ -65,6 +65,12 @@ void login() {
 	string username;	//User's Registered username
 	string password;	//Password of the user
 
+	cout << "||======================================================||\n";
+	cout << "||\t    GRANDPLEX MOVIE TICKETING SYSTEM\t\t||\n";
+	cout << "||======================================================||\n";
+	cout << "||\t\t\tLOGIN\t\t\t\t||\n";
+	cout << "||======================================================||\n";
+
 	cout << "Enter username : ";
 	cin >> username;
 
@@ -75,7 +81,7 @@ void login() {
 
 		system("CLS");
 		//Call Admin Menu (Manage Movie)
-
+		MainMenuAdmin();
 	} else {
 
 		system("CLS");
@@ -86,7 +92,46 @@ void login() {
 
 //Admin Menu Function
 void MainMenuAdmin() {
-	cout << "HI";
+	/*cout << "||======================================================||\n";
+	cout << "||\t    GRANDPLEX MOVIE TICKETING SYSTEM\t\t||\n";
+	cout << "||======================================================||\n";
+	cout << "||\t\t\tMENU\t\t\t\t||\n";
+	cout << "||======================================================||\n";
+	cout << "||1.Add Product\t\t\t\t\t\t||\n";
+	cout << "||2.Display Product\t\t\t\t\t||\n";
+	cout << "||3.Product Search\t\t\t\t\t||\n";
+	cout << "||4.Category Filter\t\t\t\t\t||\n";
+	cout << "||5.Update Product\t\t\t\t\t||\n";
+	cout << "||6.Sort Product\t\t\t\t\t||\n";
+	cout << "||7.Delete Product\t\t\t\t\t||\n";
+	cout << "||======================================================||\n\n";
+
+	int choice;
+
+	do
+	{
+		cout << "Enter selection\n";
+		cin >> choice;
+		switch (choice)
+		{
+		case 1: AddMovie();
+			break;
+		case 2: DisplayMoive();
+			break;
+		case 3: SearchMovie(keyword);
+			break;
+		case 4: FilterMovie(keywordFilter);
+			break;
+		case 5: UpdateMovie();
+			break;
+		case 6: SortMovie();
+			break;
+		case 7: DeleteMovie();
+			break;
+		default: cout << "Invalid, Please Try Again";
+			break;
+		}
+	}*/
 }
 
 //Customer Menu Function
@@ -112,7 +157,7 @@ void SearchMovie(string keyword) {
 }
 
 //Filter Movie
-void FilterMovi(string keywordFilter) {
+void FilterMovie(string keywordFilter) {
 
 }
 
