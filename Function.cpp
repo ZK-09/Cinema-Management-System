@@ -22,7 +22,7 @@ struct Ticket {
 	string movieId;			//The id of the movie
 	float ticketPrice;		//Price of the ticket
 
-	Ticket* nextAddress;
+	Ticket* nextAddress;//ticket next
 	Ticket* previous;
 
 }/**ticketHead, * ticketTail*/;
