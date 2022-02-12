@@ -4,7 +4,7 @@
 using namespace std;
 
 void login();
-
+void MainMenuAdmin();
 
 
 //#endif // !1
