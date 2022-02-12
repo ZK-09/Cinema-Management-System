@@ -7,7 +7,7 @@ struct Movie {
 	string movieDate;		//The date of movie
 	string movieTime;		//The movie start time
 	float movieDuration;	//Duration of the movie
-	int numOfSeat;			//The specific location of the seat in the hall
+	int numOfSeat;			//The total number of seat in the hall
 	int hall;				//The Hall of the movie
 
 	Movie* nextAddress;
