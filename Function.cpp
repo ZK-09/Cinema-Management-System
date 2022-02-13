@@ -269,8 +269,38 @@ void UpdateMovie() {
 }
 
 //Sort Movie based on quantity
-void SortMovie() {
-	
+void SortMovie(int *billyarrays, int size) {
+
+	int key, currentcolindex; 
+
+	for (int roundindex = 1; roundindex < size; roundindex++)
+	{
+		key = billyarrays[roundindex];
+		currentcolindex = roundindex;
+
+		//currentcolindex > 0 -> you still got previous items in front of current item
+		while (currentcolindex > 0 && billyarrays[currentcolindex - 1] > key)
+		{
+			billyarrays[currentcolindex] = billyarrays[currentcolindex - 1];
+			currentcolindex--;
+		}
+		billyarrays[currentcolindex] = key;
+
+		//finish swapping
+		cout << "Round " << roundindex << " = ";
+		for (int i = 0; i < size; i++)
+		{
+			cout << billyarrays[i] << " , ";
+		}
+		cout << endl;
+
+		cout << "Final result shows as below\n";
+		for (int i = 0; i < size; i++)
+		{
+			cout << billyarrays[i] << " , ";
+		}
+		cout << endl;
+	}
 }
 
 //Delete Movie from Movie List
