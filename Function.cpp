@@ -9,7 +9,7 @@ struct Movie {
 	string movieTime;		//The movie start time
 	float movieDuration;	//Duration of the movie
 	int numOfSeat;			//The total number of seat in the hall
-	int hall;				//The Hall of the movie
+	char hall;				//The Hall of the movie	eg. 'A', 'C' , 'D' Hall
 
 	Movie* nextAddress;
 	Movie* previous;
@@ -239,6 +239,54 @@ void AddMovie(string id, string name, string date, string time, float duration, 
 
 }
 
+//Inserted In sorted linked list function
+
+//void InsertSorted(Movie*Choose, Movie*newPointerHead, Movie*newPointerTail ) {
+//
+//	Movie* newNode = createMovieNode(id, name, date, time, duration, seat, hall);
+//
+//	newNode->nextAddress = NULL;
+//	newNode->previous = NULL;
+//
+//	//Sorted list still do not have any item
+//	if (movieHead == NULL) {
+//
+//		newMovieHead = newMovieTail = newNode;
+//
+//	}
+//	else if (id < newMovieHead->movieId) {	//If movieID is smaller than the head value
+//		newNode->nextAddress = newMovieHead;
+//		newMovieHead->previous = newNode;
+//		newMovieHead = newNode;
+//
+//	}
+//	else if (id > newMovieTail->movieId) {		//If movieId is greater than the head value
+//		newMovieTail->nextAddress = newNode;
+//		newNode->previous = newMovieTail;
+//		newMovieTail = newNode;
+//
+//	}
+//	else {
+//
+//		Movie* current = newNode->nextAddress;	//Insert in the middle of the list
+//
+//		while (current != NULL) {
+//
+//			if (id < current->movieId) {
+//				break;
+//			}
+//
+//			current = current->nextAddress;
+//		}
+//
+//		current->previous->nextAddress = newNode;
+//		newNode->previous = current->previous;
+//		current->previous = newNode;
+//		newNode->nextAddress = current;
+//
+//	}
+//}
+
 //Display Movie
 void DisplayMoive() {
 
@@ -311,7 +359,21 @@ void DeleteMovie() {
 /* Customer Purchasing Functions (Purchasing Ticket) */
 
 //Purchase Ticket --> Add Purchase
-void TicketPurchase(string id, string seat, string movieId) {
+void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
+	cout << "Enter Ticket ID : ";
+	cin >> id;
+
+	cout << "Enter Seat : ";
+	cin >> seat;
+
+	cout << "Enter Movie ID : ";
+	cin >> movieId;
+
+	cout << "Enter Ticket Price : ";
+	cin >> ticketPrice;
+
+	//Call insert sorted function
+
 
 }
 
