@@ -8,7 +8,7 @@ struct Movie {
 	string movieDate;		//The date of movie
 	string movieTime;		//The movie start time
 	float movieDuration;	//Duration of the movie
-	int numOfSeat;			//The total number of seat in the hall
+	int numOfSeat;			//The available number of seats in the hall
 	char hall;				//The Hall of the movie	eg. 'A', 'C' , 'D' Hall
 
 	Movie* nextAddress;
@@ -37,7 +37,7 @@ Movie* createMovieNode(string id, string name, string date, string time, float d
 	newMovie->movieDate = date;
 	newMovie->movieTime = time;
 	newMovie->movieDuration = duration;
-	newMovie->numOfSeat = seat;
+	newMovie->numOfSeat = seat;			
 	newMovie->hall = hall;
 
 	newMovie->nextAddress = NULL;
@@ -302,8 +302,59 @@ void FilterMovie(string keywordFilter) {
 
 }
 
+//Update Movie ID
+void IdUpdate(Movie* temp) {
+	cout << "Enter New Movie ID : ";
+	getline(cin, temp->movieId);
+	cout << endl << "Update Successfullly." << endl;
+}
+
+//Update Movie Name
+void NameUpdate (Movie * temp){
+	cout << "Enter New Movie ID : ";
+	getline(cin, temp->movieName);
+	cout << endl << "Update Successfullly." << endl;
+}
+
+//Update Movie Date
+void DateUpdate(Movie* temp) {
+	cout << "Enter New Movie ID : ";
+	getline(cin, temp->movieDate);
+	cout << endl << "Update Successfullly." << endl;
+}
+
+//Update Movie Time
+void TimeUpdate(Movie* temp) {
+	cout << "Enter New Movie ID : ";
+	getline(cin, temp->movieTime);
+	cout << endl << "Update Successfullly." << endl;
+}
+
+//Update Movie Duration
+void DurationUpdate(Movie* temp) {
+	cout << "Enter New Movie ID : ";
+	cin >> temp->movieDuration;
+	cout << endl << "Update Successfullly." << endl;
+}
+
+//Update Movie Seat
+void SeatUpdate(Movie* temp) {
+	cout << "Enter New Movie ID : ";
+	cin >> temp->numOfSeat;
+	cout << endl << "Update Successfullly." << endl;
+}
+
+//Update Movie Hall
+void HallUpdate(Movie* temp) {
+	cout << "Enter New Movie ID : ";
+	cin >> temp->hall;
+	cout << endl << "Update Successfullly." << endl;
+}
+
 //Update Movie Information
 void UpdateMovie() {
+
+	Movie* temp = movieHead;
 
 	//Get user input to update which part of the movie
 	cout << "Select the information to update" << endl;
@@ -314,6 +365,37 @@ void UpdateMovie() {
 	cout << "5. Movie Duration" << endl;
 	cout << "6. No of Seat" << endl;
 	cout << "7. Movie Hall" << endl;
+
+	int decision;
+	cout << "Enter 1-7 as option to update :";
+	cin >> decision;
+	cin.ignore();
+
+	switch (decision) {
+		case 1:
+			IdUpdate(temp);
+
+		case 2 :
+			NameUpdate(temp);
+
+		case 3 :
+			DateUpdate(temp);
+
+		case 4 :
+			TimeUpdate(temp);
+
+		case 5 :
+			DurationUpdate(temp);
+
+		case 6 :
+			SeatUpdate(temp);
+
+		case 7 :
+			HallUpdate(temp);
+
+		default:
+			cout << "Please Enter the correct input. " << endl;
+	}
 }
 
 //Sort Movie based on quantity
