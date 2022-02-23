@@ -173,9 +173,17 @@ void MainMenuCustomer() {
 
 /* Admin Management Functions (Movie Management) */
 
+void errorDetection() {
+
+}
+
 //Add Movie --> Insert into sorted list
-void AddMovie(string id, string name, string date, string time, float duration, int seat, int hall) {
+void AddMovie(/*string id, string name, string date, string time, float duration, int seat, int hall*/) {
 	
+	string id, name, date, times;
+	float duration;
+	int seat, hall;
+
 	cout << "Enter Movie Id : ";
 	cin >> id;
 
@@ -186,7 +194,7 @@ void AddMovie(string id, string name, string date, string time, float duration, 
 	cin >> date;
 
 	cout << "Enter Movie Time : ";
-	cin >> time;
+	cin >> times;
 
 	cout << "Enter Movie Duration : ";
 	cin >> duration;
@@ -197,7 +205,7 @@ void AddMovie(string id, string name, string date, string time, float duration, 
 	cout << "Enter Movie Hall : ";
 	cin >> hall;
 
-	Movie* newNode = createMovieNode(id, name, date, time, duration, seat, hall);
+	Movie* newNode = createMovieNode(id, name, date, times, duration, seat, hall);
 
 	newNode->nextAddress = NULL;
 	newNode->previous = NULL;
