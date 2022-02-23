@@ -424,21 +424,15 @@ void SortMovie(int *billyarrays, int size) {
 		}
 		billyarrays[currentcolindex] = key;
 
-		//finish swapping
-		cout << "Round " << roundindex << " = ";
+		
+	}
+	cout << "Final result shows as below\n";
 		for (int i = 0; i < size; i++)
 		{
 			cout << billyarrays[i] << " , ";
 		}
 		cout << endl;
 
-		cout << "Final result shows as below\n";
-		for (int i = 0; i < size; i++)
-		{
-			cout << billyarrays[i] << " , ";
-		}
-		cout << endl;
-	}
 }
 
 //Delete Movie from Movie List
