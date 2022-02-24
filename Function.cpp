@@ -113,54 +113,60 @@ void MainMenuAdmin() {
 
 	
 		/* Movie Add Variables*/
-		string id, name, date, times;
+		string id, name, date, times, cat;
 		float duration;
 		int seat;
 		int hall;
-		int decision = 1;
 
 		cout << "Enter selection : ";
 		cin >> choice;
 
+		int decision = 1;
 		switch (choice) {
 
-		case 1: 			
-			
-			while (decision != 0) {
-				cout << "Enter Movie Id : ";
-				cin >> id;
+			case 1: 	
 
-				cout << "Enter Movie Name : ";
-				cin >> name;
+				while (decision != 0) {
+					cout << "Enter Movie Id : ";
+					cin >> id;
 
-				cout << "Enter Movie Date : ";
-				cin >> date;
+					cout << "Enter Movie Name : ";
+					cin >> name;
 
-				cout << "Enter Movie Time : ";
-				cin >> times;
+					cout << "Enter Movie Date : ";
+					cin >> date;
 
-				cout << "Enter Movie Duration : ";
-				cin >> duration;
+					cout << "Enter Movie Time : ";
+					cin >> times;
 
-				cout << "Enter Movie Seat : ";
-				cin >> seat;
+					cout << "Enter Movie Category : ";
+					cin >> cat;
 
-				cout << "Enter Movie Hall : ";				
-				cin >> hall;
+					cout << "Enter Movie Duration : ";
+					cin >> duration;
 
-				AddMovie(id, name, date, times, duration, seat, hall );
+					cout << "Enter Movie Seat : ";
+					cin >> seat;
 
-				//Add Display Function here to see the output
+					cout << "Enter Movie Hall : ";				
+					cin >> hall;
+
+					AddMovie(id, name, date, times, cat, duration, seat, hall );	//Function
+
+					//Add Display Function here to see the output
+					
+					//DisplayMoive();
+
+					cout << "Enter 1 to continue insert, 0 to stop : ";
+					cin >> decision;
 				
+				}
 
-				cout << "Enter 1 to continue insert, 0 to stop : ";
-				cin >> decision;
-				
-			}
-
-			DisplayMoive();
+				cout << "Movie are listed below : " << endl;
+				DisplayMoive();
 		
-			break;
+				break;
+
 		/*case 2: DisplayMoive();
 			break;
 		case 3: SearchMovie(keyword);
@@ -173,8 +179,9 @@ void MainMenuAdmin() {
 			break;
 		case 7: DeleteMovie();
 			break;*/
-		default: cout << "Invalid, Please Try Again";
-			break;
+			default: 
+				cout << "Invalid, Please Try Again";
+				break;
 		}
 	
 	
@@ -194,7 +201,6 @@ void MainMenuCustomer() {
 	cout << "||======================================================||\n\n";
 
 	int choice;
-
 	
 
 		string idT, idM;
@@ -256,7 +262,7 @@ void AddMovie(string id, string name, string date, string times, string cat, flo
 	newNode->previous = NULL;
 
 	//Sorted list still do not have any item
-	if (movieHead == NULL) {
+	if (newMovieHead == NULL) {
 
 		newMovieHead = newMovieTail = newNode;
 
@@ -272,7 +278,7 @@ void AddMovie(string id, string name, string date, string times, string cat, flo
 
 	} else {
 		
-		Movie* current = newNode->nextAddress;	//Insert in the middle of the list
+		Movie* current = newMovieHead->nextAddress;	//Insert in the middle of the list
 		//Movie* previous = newMovieHead;
 
 		while (current != NULL) {
@@ -351,6 +357,7 @@ void DisplayMoive() {
 		cout << temp->movieId << "-" << temp->movieName << "-"
 			<< temp->movieDate << "-" << temp->movieTime << "-" << temp->movieDuration
 			<< "-" << temp->numOfSeat << "-" << temp->hall << endl;
+
 		temp = temp->nextAddress;
 	}
 	cout << endl;
@@ -391,6 +398,12 @@ void DateUpdate(Movie* temp) {
 void TimeUpdate(Movie* temp) {
 	cout << "Enter New Movie ID : ";
 	getline(cin, temp->movieTime);
+	cout << endl << "Update Successfullly." << endl;
+}
+
+void CategoryUpdate(Movie* temp) {
+	cout << "Enter New Movie ID : ";
+	getline(cin, temp->categories);
 	cout << endl << "Update Successfullly." << endl;
 }
 
