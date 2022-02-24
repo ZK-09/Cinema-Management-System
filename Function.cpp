@@ -1,33 +1,9 @@
 #include "Header.h"
 
 // Assumption that all the data is pre-sorted
-struct Movie {
+ Movie *movieHead, * movieTail, *newMovieHead, *newMovieTail;
 
-	string movieId;			//The Id of the movie
-	string movieName;		//The name of the movie
-	string movieDate;		//The date of movie
-	string movieTime;		//The movie start time
-	string categories;		//Categories of the movie
-	float movieDuration;	//Duration of the movie
-	int numOfSeat;			//The available number of seats in the hall
-	int hall;				//The Hall of the movie	eg. 'A' == 1, 'C' == 3 , 'D' == 4 Hall
-
-	Movie* nextAddress;
-	Movie* previous;
-
-} *movieHead, * movieTail, *newMovieHead, *newMovieTail;
-
-struct Ticket {
-
-	string ticketId;		//The id of the ticket
-	string seat;			//The seat of the hall
-	string movieId;			//The id of the movie
-	float ticketPrice;		//Price of the ticket
-
-	Ticket* nextAddress;
-	Ticket* previous;
-
-}*ticketHead, * ticketTail, *newTicketHead, *newTicketTail;
+Ticket *ticketHead, * ticketTail, *newTicketHead, *newTicketTail;
 
 //Constructor of Movie & Ticket node
 Movie* createMovieNode(string id, string name, string date, string time, string cat, float duration, int seat, int hall) {
@@ -157,6 +133,7 @@ void MainMenuAdmin() {
 					cout << "Enter Movie Hall : ";				
 					cin >> hall;
 
+					
 					AddMovie(id, name, date, times, cat, duration, seat, hall );	//Function
 					
 
@@ -204,47 +181,80 @@ void MainMenuCustomer() {
 	cout << "||4.Purchase Detail\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
-	string ticket[3][4] = {
+	const int sizes = 10;
+	string ticket[sizes][4] = {
 		{"T9001", "A45", "M0001", "109.00"},
 		{"T9056", "D22", "M0001", "25.00"},
 		{"T9001", "C78", "M0001", "50.50"}
 	};
 
 	
-	int choice;
-	
+	int choice;	
 
 		string idT, idM;
-		int seat;
+		string seat;
 		float ticketPrice;
 
 		int decision = 1;
+		int count = 1;
+
+		int length = sizeof(ticket) / sizeof(ticket[0]);
+		cout << "The length of the linked list: " << length << endl;
 
 		cout << "Enter selection : ";
 		cin >> choice;
+
 		switch (choice) {
 			case 1: 
-			
-				while (decision != 0) {
-					cout << "Enter Ticket ID : ";
-					cin >> idT;
+				/*int count = 1;*/
+				/*cout << "Enter the numbers to add : " ;
+				cin >> count;*/
 
-					cout << "Enter Seat : ";
-					cin >> seat;
+				
 
-					cout << "Enter Movie ID : ";
-					cin >> idM;
+				for (int i = 0; i < length; i++) {
 
-					cout << "Enter Ticket Price : ";
-					cin >> ticketPrice;
+					Ticket* newTicket = new Ticket;
+					newTicket->ticketId = ticket[i][0];
+					newTicket->movieId = ticket[i][2];
+					newTicket->seat = ticket[i][1];
+					newTicket->ticketPrice = stoi(ticket[i][3]);
 
-					//TicketPurchase(idT, seat, idM, ticketPrice);
+					displayFromFront(ticketHead);
 
-					//Display the output here to see what have added
+					while (count != 0) {
+						/*for (int i = 0; i < count; i++) {*/
+						cout << "Enter Ticket ID : ";
+						cin >> idT;
 
-					cout << "Enter 1 to continue insert, 0 to stop : ";
-					cin >> decision;
+						cout << "Enter Seat : ";
+						cin >> seat;
+
+						cout << "Enter Movie ID : ";
+						cin >> idM;
+
+						cout << "Enter Ticket Price : ";
+						cin >> ticketPrice;
+
+						TicketPurchase(&ticketHead, idT, seat, idM, ticketPrice);
+
+						cout << "Enter 1 to continue : ";
+						cin >> count;
+
+						cout << newTicket->ticketId << " " << newTicket->movieId << " " << newTicket->seat << " " << newTicket->ticketPrice << endl;
+
+						//Display the output here to see what have added
+						/*ViewTicket(ticket);*/
+					}
+
+					cout << "Information has added are" << endl;
+					DisplayTicket2();
 				}
+				//}
+				
+
+				
+
 				break;
 			case 2: 
 
@@ -272,39 +282,15 @@ void AddMovie(string id, string name, string date, string times, string cat, flo
 	newNode->previous = NULL;
 
 	//Sorted list still do not have any item
-	if (newMovieHead == NULL) {
+	if (movieHead == NULL) {
 
-		newMovieHead = newMovieTail = newNode;
+		movieHead = newNode;
 
-	} else if (id < newMovieHead->movieId) {	//If movieID is smaller than the head value
-		newNode->nextAddress = newMovieHead;
-		newMovieHead->previous = newNode;
-		newMovieHead = newNode;
-
-	} else if (id > newMovieTail->movieId){		//If movieId is greater than the head value
-		newMovieTail->nextAddress = newNode;
-		newNode->previous = newMovieTail;
-		newMovieTail = newNode;
-
-	} else {
+	}
+	else {
 		
-		Movie* current = newMovieHead->nextAddress;	//Insert in the middle of the list
-		//Movie* previous = newMovieHead;
 
-		while (current != NULL) {
-
-			if (id < current->movieId) {
-				break;
-			}
-			
-			current = current->nextAddress;
-		}
-
-		current->previous->nextAddress = newNode;
-		newNode->previous = current->previous;
-		current->previous = newNode;
-		newNode->nextAddress = current;
-
+	
 	}
 
 }
@@ -319,6 +305,19 @@ void DisplayMoive() {
 		cout << temp->movieId << "-" << temp->movieName << "-"
 			<< temp->movieDate << "-" << temp->movieTime << "-" << temp->movieDuration
 			<< "-" << temp->numOfSeat << "-" << temp->hall << endl;
+
+		temp = temp->nextAddress;
+	}
+	cout << endl;
+}
+
+void DisplayTicket2() {
+	Ticket* temp = ticketHead;
+
+	while (temp != NULL)
+	{
+		cout << temp->ticketId << "-" << temp->seat << "-"
+			<< temp->movieId << "-" << temp->ticketPrice << endl;
 
 		temp = temp->nextAddress;
 	}
@@ -475,54 +474,52 @@ void DeleteMovie() {
 
 /* Customer Purchasing Functions (Purchasing Ticket) */
 
-//Purchase Ticket --> Add Purchase
-void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
-	
-	//Call insert sorted function
-	Ticket* newNode = createTicketNode(id, seat, movieId, ticketPrice);
+//Display From Front
+void displayFromFront(Ticket* head) {
+	Ticket* temp = head;
 
-	newNode->nextAddress = NULL;
-	newNode->previous = NULL;
-
-	if (newTicketHead == NULL) {
-		newTicketHead = newTicketTail = newNode;
-
-	} else if (id < newTicketHead->ticketId) {
-
-		newNode->nextAddress = newTicketHead;
-		newTicketHead->previous = newNode;
-		newTicketHead = newNode;
-
-	} else if (id > newTicketTail->ticketId) {
-		newTicketTail->nextAddress = newNode;
-		newNode->previous = newTicketTail;
-		newTicketTail = newNode;
-	
-	} else {
-		 
-		Ticket* current = newTicketHead->nextAddress;
-
-		while (current != NULL) {
-			if (id < current->ticketId) {
-				break;
-			}
-
-			current = current->nextAddress;
-		}
-
-		current->previous->nextAddress = newNode;
-		newNode->previous = current->previous;
-		current->previous = newNode;
-		newNode->nextAddress = current;
-
+	while (temp) {
+		cout << temp->ticketId << "-" << temp->seat << "-" << temp->movieId << "-" << temp->ticketPrice << endl;
+		temp = temp->nextAddress;
 	}
 
+	cout << "Ended";
+}
+
+//Purchase Ticket --> Add Purchase
+void TicketPurchase(Ticket** head, string id, string seat, string movieId, float ticketPrice) {
+	
+	/*for (int i = 0; i < 5; i++) {*/
+
+		//Call insert sorted function
+		Ticket* newNode = createTicketNode(id, seat, movieId, ticketPrice);
+
+		newNode->nextAddress = (*head);
+		(*head) = newNode;
+
+		newNode->nextAddress = NULL;
+		newNode->previous = NULL;
+
+		if (ticketHead == NULL) {
+			ticketHead = newNode;
+
+		} else {
+			Ticket* current = ticketHead;
+			while (current->nextAddress != NULL) {
+				current = current->nextAddress;
+			}
+
+			current->nextAddress = newNode;
+		}
+		//cout << newNode->ticketId << " " << newNode->movieId << " " << newNode->seat << " " << newNode->ticketPrice << endl;
+	//}
+	/*::size++;*/
 }
 
 //View Purchase Transactions
 void ViewTicket(string ticket[3][4]) {
-
-	for (int i = 0; i < 3; i++) {
+	int ROW = 10;
+	for (int i = 0; i < ROW; i++) {
 			Ticket* newTicket = new Ticket;
 			newTicket->ticketId = ticket[i][0];
 			newTicket->movieId = ticket[i][2];
