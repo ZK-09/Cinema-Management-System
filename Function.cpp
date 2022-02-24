@@ -194,16 +194,37 @@ void MainMenuAdmin() {
 			break;*/
 		case 3: 
 			
-			cout << "Enter Search Keyword : ";
-			cin >> keyword;
+			for (int i = 0; i < 3; i++) {
+				
+				AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));	
 
-			SearchMovie(keyword);
+
+				int decision = 1;
+				while (decision != 0) {
+					cout << "Enter Search Keyword : ";
+					cin >> keyword;
+
+					bool found = SearchMovie(keyword);
+					/*if (found == true) {
+						break;
+					}
+
+					if (found == false) {
+						break;
+					}*/
+					cout << "Enter 1 to continue; 0 to stop : ";
+					cin >> decision;
+				}
+				break;
+			}
+			
+			
 
 			break;
 		/*case 4: FilterMovie(keywordFilter);
 			break;*/
-		case 5: UpdateMovie();
-			break;
+		/*case 5: UpdateMovie();
+			break;*/
 		/*case 6: SortMovie();
 			break;
 		case 7: DeleteMovie();
@@ -257,7 +278,7 @@ void MainMenuCustomer() {
 
 				TicketPurchase(ticket[i][0], ticket[i][1], ticket[i][2], stoi(ticket[i][3]));		
 			}
-			//displayFromFront();
+			displayFromFront();
 
 			while (decision != 0) {
 
@@ -355,21 +376,31 @@ void DisplayMoive() {
 
 
 //Search Movie
-void SearchMovie(string keyword) {
-
+bool SearchMovie(string keyword) {
 
 	Movie* temp = movieHead;
+	int flag = 0;
 
 	while (temp != NULL) {
 		if (temp->movieId == keyword) {
 			cout << temp->movieId << " " << temp->movieName << " " << temp->movieDate << " " <<
 				temp->movieTime << " " << temp->movieDuration << " " << temp->categories << " " <<
 				temp->numOfSeat << " " << temp->hall << endl;
+			flag = 1;
+			return true;
 
-		} else {
-			cout << "Movie Not Found ..";
+			break;
+		} 
 
+		if (flag == 0) {
+			cout << "Movie Not Found .." << endl ;
+		
+			return false;
+
+			break;
 		}
+
+		temp = temp->nextAddress;
 	}
 }
 
