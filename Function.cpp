@@ -455,31 +455,40 @@ void UpdateMovie() {
 }
 
 //Sort Movie based on quantity
-void SortMovie(int *billyarrays, int size) {
-
-	int key, currentcolindex; 
-
-	for (int roundindex = 1; roundindex < size; roundindex++)
+void SortMovie(int movieList[][6], int row) {
+	int i, j, temp1, temp2;
+	for (i = 0; i < row - 1; i++)
 	{
-		key = billyarrays[roundindex];
-		currentcolindex = roundindex;
-
-		//currentcolindex > 0 -> you still got previous items in front of current item
-		while (currentcolindex > 0 && billyarrays[currentcolindex - 1] > key)
+		for (j = i + 1; j < row; j++)
 		{
-			billyarrays[currentcolindex] = billyarrays[currentcolindex - 1];
-			currentcolindex--;
+			if(movieList)
 		}
-		billyarrays[currentcolindex] = key;
-
-		
 	}
-	cout << "Final result shows as below\n";
-		for (int i = 0; i < size; i++)
-		{
-			cout << billyarrays[i] << " , ";
-		}
-		cout << endl;
+
+
+	//int key, currentcolindex; 
+
+	//for (int roundindex = 1; roundindex < size; roundindex++)
+	//{
+	//	key = billyarrays[roundindex];
+	//	currentcolindex = roundindex;
+
+	//	//currentcolindex > 0 -> you still got previous items in front of current item
+	//	while (currentcolindex > 0 && billyarrays[currentcolindex - 1] > key)
+	//	{
+	//		billyarrays[currentcolindex] = billyarrays[currentcolindex - 1];
+	//		currentcolindex--;
+	//	}
+	//	billyarrays[currentcolindex] = key;
+
+	//	
+	//}
+	//cout << "final result shows as below\n";
+	//	for (int i = 0; i < size; i++)
+	//	{
+	//		cout << billyarrays[i] << " , ";
+	//	}
+	//	cout << endl;
 
 }
 
@@ -530,7 +539,7 @@ void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 
 //View Purchase Transactions
 void ViewTicket() {
-
+	
 }
 
 //Sort Purchase Transaction based on total price
