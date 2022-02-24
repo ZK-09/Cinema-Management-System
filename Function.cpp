@@ -110,9 +110,14 @@ void MainMenuAdmin() {
 	cout << "||7.Delete Product\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
+	string movie[3][8] = {
+		{"M0001","Harry Potter","29-9-2022","1830", "Comedy", "3","100","3"},
+		{"M0002","Friends","18-6-2022","1400","Comedy", "4","75","1"},
+		{"M0003","Till We Meet Again","2-2-2022","1000","Romance", "2","66","4"}
+	};
+
 	int choice;
 
-	
 		/* Movie Add Variables*/
 		string id, name, date, times, cat;
 		float duration;
@@ -153,16 +158,14 @@ void MainMenuAdmin() {
 					cin >> hall;
 
 					AddMovie(id, name, date, times, cat, duration, seat, hall );	//Function
-
-					//Add Display Function here to see the output
 					
-					//DisplayMoive();
 
 					cout << "Enter 1 to continue insert, 0 to stop : ";
 					cin >> decision;
 				
 				}
 
+				//Display all the movie listed
 				cout << "Movie are listed below : " << endl;
 				DisplayMoive();
 		
@@ -207,6 +210,7 @@ void MainMenuCustomer() {
 		{"T9001", "C78", "M0001", "50.50"}
 	};
 
+	
 	int choice;
 	
 
@@ -216,7 +220,7 @@ void MainMenuCustomer() {
 
 		int decision = 1;
 
-		cout << "Enter selection\n";
+		cout << "Enter selection : ";
 		cin >> choice;
 		switch (choice) {
 			case 1: 
@@ -233,6 +237,7 @@ void MainMenuCustomer() {
 
 					cout << "Enter Ticket Price : ";
 					cin >> ticketPrice;
+
 					//TicketPurchase(idT, seat, idM, ticketPrice);
 
 					//Display the output here to see what have added
@@ -243,7 +248,7 @@ void MainMenuCustomer() {
 				break;
 			case 2: 
 
-				ViewTicket();
+				ViewTicket(ticket);
 				break;
 			//case 3: SortTicketPrice();
 				//break;
@@ -257,9 +262,6 @@ void MainMenuCustomer() {
 
 /* Admin Management Functions (Movie Management) */
 
-void errorDetection() {
-
-}
 
 //Add Movie --> Insert into sorted list
 void AddMovie(string id, string name, string date, string times, string cat, float duration, int seat, int hall) {
@@ -306,54 +308,6 @@ void AddMovie(string id, string name, string date, string times, string cat, flo
 	}
 
 }
-
-//Inserted In sorted linked list function
-
-//void InsertSorted(Movie*Choose, Movie*newPointerHead, Movie*newPointerTail ) {
-//
-//	Movie* newNode = createMovieNode(id, name, date, time, duration, seat, hall);
-//
-//	newNode->nextAddress = NULL;
-//	newNode->previous = NULL;
-//
-//	//Sorted list still do not have any item
-//	if (movieHead == NULL) {
-//
-//		newMovieHead = newMovieTail = newNode;
-//
-//	}
-//	else if (id < newMovieHead->movieId) {	//If movieID is smaller than the head value
-//		newNode->nextAddress = newMovieHead;
-//		newMovieHead->previous = newNode;
-//		newMovieHead = newNode;
-//
-//	}
-//	else if (id > newMovieTail->movieId) {		//If movieId is greater than the head value
-//		newMovieTail->nextAddress = newNode;
-//		newNode->previous = newMovieTail;
-//		newMovieTail = newNode;
-//
-//	}
-//	else {
-//
-//		Movie* current = newNode->nextAddress;	//Insert in the middle of the list
-//
-//		while (current != NULL) {
-//
-//			if (id < current->movieId) {
-//				break;
-//			}
-//
-//			current = current->nextAddress;
-//		}
-//
-//		current->previous->nextAddress = newNode;
-//		newNode->previous = current->previous;
-//		current->previous = newNode;
-//		newNode->nextAddress = current;
-//
-//	}
-//}
 
 //Display Movie
 void DisplayMoive() {
@@ -567,19 +521,16 @@ void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 
 //View Purchase Transactions
 void ViewTicket(string ticket[3][4]) {
-	
-	//Ticket* temp = ticketHead;
 
-	//	while (temp != NULL)
-	//	{
-	//		cout << temp->ticketId << " + " << temp->seat <<  " + " << temp->movieId <<  " + " << temp->ticketPrice << endl;
-	//		temp = temp->nextAddress;
-	//	}
+	for (int i = 0; i < 3; i++) {
+			Ticket* newTicket = new Ticket;
+			newTicket->ticketId = ticket[i][0];
+			newTicket->movieId = ticket[i][2];
+			newTicket->seat = ticket[i][1];
+			newTicket->ticketPrice = stoi(ticket[i][3]);
 
-	for (int i = 0; i < size(ticket); i++)
-	{
-		
-		TicketPurchase(ticket[i][0], ticket[i][1], ticket[i][2], stoi(ticket[i][3]));
+			cout << newTicket->ticketId << " " << newTicket->movieId << " " << newTicket->seat << " " << newTicket->ticketPrice << endl;
+
 	}
 }
 
