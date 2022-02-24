@@ -16,6 +16,6 @@ int main() {
 		{"T9001", "C78", "M0001", "50.50"}
 	};
 
-	cout << "Hello";
+	cout << endl <<  "End Testing Print ! Delete Must !";
 	return 0;
 }

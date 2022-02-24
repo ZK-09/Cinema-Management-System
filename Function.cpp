@@ -26,7 +26,7 @@ struct Ticket {
 	Ticket* nextAddress;
 	Ticket* previous;
 
-}*ticketHead, * ticketTail;
+}*ticketHead, * ticketTail, *newTicketHead, *newTicketTail;
 
 //Constructor of Movie & Ticket node
 Movie* createMovieNode(string id, string name, string date, string time, float duration, int seat, int hall) {
@@ -93,7 +93,7 @@ void login() {
 
 //Admin Menu Function
 void MainMenuAdmin() {
-	/*cout << "||======================================================||\n";
+	cout << "||======================================================||\n";
 	cout << "||\t    GRANDPLEX MOVIE TICKETING SYSTEM\t\t||\n";
 	cout << "||======================================================||\n";
 	cout << "||\t\t\tMENU\t\t\t\t||\n";
@@ -109,36 +109,73 @@ void MainMenuAdmin() {
 
 	int choice;
 
-	do
-	{
-		cout << "Enter selection\n";
+	
+		/* Movie Add Variables*/
+		string id, name, date, times;
+		float duration;
+		int seat, hall;
+		int decision = 1;
+
+		cout << "Enter selection : ";
 		cin >> choice;
-		switch (choice)
-		{
-		case 1: AddMovie();
+		switch (choice) {
+
+		case 1: 
+			
+			
+			while (decision != 0) {
+				cout << "Enter Movie Id : ";
+				cin >> id;
+
+				cout << "Enter Movie Name : ";
+				cin >> name;
+
+				cout << "Enter Movie Date : ";
+				cin >> date;
+
+				cout << "Enter Movie Time : ";
+				cin >> times;
+
+				cout << "Enter Movie Duration : ";
+				cin >> duration;
+
+				cout << "Enter Movie Seat : ";
+				cin >> seat;
+
+				cout << "Enter Movie Hall : ";
+				cin >> hall;
+
+				AddMovie(id, name, date, times, duration, seat, hall);
+
+				//Add Display Function here to see the output
+
+				cout << "Enter 1 to continue insert, 0 to stop : ";
+				cin >> decision;
+			}
+		
 			break;
-		case 2: DisplayMoive();
+		/*case 2: DisplayMoive();
 			break;
 		case 3: SearchMovie(keyword);
 			break;
 		case 4: FilterMovie(keywordFilter);
-			break;
+			break;*/
 		case 5: UpdateMovie();
 			break;
-		case 6: SortMovie();
+		/*case 6: SortMovie();
 			break;
 		case 7: DeleteMovie();
-			break;
+			break;*/
 		default: cout << "Invalid, Please Try Again";
 			break;
 		}
-	}*/
+	
 	
 }
 
 //Customer Menu Function
 void MainMenuCustomer() {
-	/*cout << "||======================================================||\n";
+	cout << "||======================================================||\n";
 	cout << "||\t    GRANDPLEX MOVIE TICKETING SYSTEM\t\t||\n";
 	cout << "||======================================================||\n";
 	cout << "||\t\t\tMENU\t\t\t\t||\n";
@@ -153,11 +190,38 @@ void MainMenuCustomer() {
 
 	do
 	{
+
+		string idT, idM;
+		int seat;
+		float ticketPrice;
+
+		int decision = 1;
+
 		cout << "Enter selection\n";
 		cin >> choice;
 		switch (choice)
 		{
-		case 1: TicketPurchase();
+		case 1: 
+			
+			while (decision != 0) {
+				cout << "Enter Ticket ID : ";
+				cin >> idT;
+
+				cout << "Enter Seat : ";
+				cin >> seat;
+
+				cout << "Enter Movie ID : ";
+				cin >> idM;
+
+				cout << "Enter Ticket Price : ";
+				cin >> ticketPrice;
+				TicketPurchase(idT, seat, idM, ticketPrice);
+
+				//Display the output here to see what have added
+
+				cout << "Enter 1 to continue insert, 0 to stop : ";
+				cin >> decision;
+			}
 			break;
 		case 2: ViewTicket();
 			break;
@@ -168,7 +232,7 @@ void MainMenuCustomer() {
 		default: cout << "Invalid, Please Try Again";
 			break;
 		}
-	}*/
+	}
 }
 
 /* Admin Management Functions (Movie Management) */
@@ -178,33 +242,8 @@ void errorDetection() {
 }
 
 //Add Movie --> Insert into sorted list
-void AddMovie(/*string id, string name, string date, string time, float duration, int seat, int hall*/) {
+void AddMovie(string id, string name, string date, string times, float duration, int seat, int hall) {
 	
-	string id, name, date, times;
-	float duration;
-	int seat, hall;
-
-	cout << "Enter Movie Id : ";
-	cin >> id;
-
-	cout << "Enter Movie Name : ";
-	cin >> name;
-
-	cout << "Enter Movie Date : ";
-	cin >> date;
-
-	cout << "Enter Movie Time : ";
-	cin >> times;
-
-	cout << "Enter Movie Duration : ";
-	cin >> duration;
-
-	cout << "Enter Movie Seat : ";
-	cin >> seat;
-
-	cout << "Enter Movie Hall : ";
-	cin >> hall;
-
 	Movie* newNode = createMovieNode(id, name, date, times, duration, seat, hall);
 
 	newNode->nextAddress = NULL;
@@ -444,20 +483,39 @@ void DeleteMovie() {
 
 //Purchase Ticket --> Add Purchase
 void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
-	cout << "Enter Ticket ID : ";
-	cin >> id;
-
-	cout << "Enter Seat : ";
-	cin >> seat;
-
-	cout << "Enter Movie ID : ";
-	cin >> movieId;
-
-	cout << "Enter Ticket Price : ";
-	cin >> ticketPrice;
-
+	
 	//Call insert sorted function
+	Ticket* newNode = createTicketNode(id, seat, movieId, ticketPrice);
 
+	newNode->nextAddress = NULL;
+	newNode->previous = NULL;
+
+	if (ticketHead == NULL) {
+		newTicketHead = newTicketTail = newNode;
+
+	} else if (id < newTicketHead->ticketId) {
+		newNode->nextAddress = newTicketHead;
+		newTicketHead->previous = newNode;
+		newTicketHead = newNode;
+
+	} else {
+
+		Ticket* current = newNode->nextAddress;
+
+		while (current != NULL) {
+			if (id < current->ticketId) {
+				break;
+			}
+
+			current = current->nextAddress;
+		}
+
+		current->previous->nextAddress = newNode;
+		newNode->previous = current->previous;
+		current->previous = newNode;
+		newNode->nextAddress = current;
+
+	}
 
 }
 
