@@ -89,6 +89,7 @@ void login() {
 
 		system("CLS");
 		//Call Customer Menu (Purchase Ticket)
+		MainMenuCustomer();
 	}
 
 }
@@ -200,6 +201,12 @@ void MainMenuCustomer() {
 	cout << "||4.Purchase Detail\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
+	string ticket[3][4] = {
+		{"T9001", "A45", "M0001", "109.00"},
+		{"T9056", "D22", "M0001", "25.00"},
+		{"T9001", "C78", "M0001", "50.50"}
+	};
+
 	int choice;
 	
 
@@ -211,38 +218,39 @@ void MainMenuCustomer() {
 
 		cout << "Enter selection\n";
 		cin >> choice;
-		switch (choice)
-		{
-		case 1: 
+		switch (choice) {
+			case 1: 
 			
-			while (decision != 0) {
-				cout << "Enter Ticket ID : ";
-				cin >> idT;
+				while (decision != 0) {
+					cout << "Enter Ticket ID : ";
+					cin >> idT;
 
-				cout << "Enter Seat : ";
-				cin >> seat;
+					cout << "Enter Seat : ";
+					cin >> seat;
 
-				cout << "Enter Movie ID : ";
-				cin >> idM;
+					cout << "Enter Movie ID : ";
+					cin >> idM;
 
-				cout << "Enter Ticket Price : ";
-				cin >> ticketPrice;
-				//TicketPurchase(idT, seat, idM, ticketPrice);
+					cout << "Enter Ticket Price : ";
+					cin >> ticketPrice;
+					//TicketPurchase(idT, seat, idM, ticketPrice);
 
-				//Display the output here to see what have added
+					//Display the output here to see what have added
 
-				cout << "Enter 1 to continue insert, 0 to stop : ";
-				cin >> decision;
-			}
-			break;
-		case 2: ViewTicket();
-			break;
-		//case 3: SortTicketPrice();
-			//break;
-		/*case 4: DisplayDetail();
-			break;*/
-		default: cout << "Invalid, Please Try Again";
-			break;
+					cout << "Enter 1 to continue insert, 0 to stop : ";
+					cin >> decision;
+				}
+				break;
+			case 2: 
+
+				ViewTicket();
+				break;
+			//case 3: SortTicketPrice();
+				//break;
+			/*case 4: DisplayDetail();
+				break;*/
+			default: cout << "Invalid, Please Try Again";
+				break;
 		}
 	
 }
@@ -552,15 +560,20 @@ void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 }
 
 //View Purchase Transactions
-void ViewTicket() {
+void ViewTicket(string ticket) {
 	
-	Ticket* temp = ticketHead;
+	//Ticket* temp = ticketHead;
 
-		while (temp != NULL)
-		{
-			cout << temp->ticketId << " + " << temp->seat <<  " + " << temp->movieId <<  " + " << temp->ticketPrice << endl;
-			temp = temp->nextAddress;
-		}
+	//	while (temp != NULL)
+	//	{
+	//		cout << temp->ticketId << " + " << temp->seat <<  " + " << temp->movieId <<  " + " << temp->ticketPrice << endl;
+	//		temp = temp->nextAddress;
+	//	}
+	for (int i = 0; i < size(ticket); i++)
+	{
+
+		insertintofront(stoi(books[i][0]), books[i][1]);
+	}
 }
 
 //Sort Purchase Transaction based on total price
