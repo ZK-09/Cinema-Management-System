@@ -566,7 +566,7 @@ void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 }
 
 //View Purchase Transactions
-void ViewTicket(string ticket) {
+void ViewTicket(string ticket[3][4]) {
 	
 	//Ticket* temp = ticketHead;
 
@@ -575,10 +575,11 @@ void ViewTicket(string ticket) {
 	//		cout << temp->ticketId << " + " << temp->seat <<  " + " << temp->movieId <<  " + " << temp->ticketPrice << endl;
 	//		temp = temp->nextAddress;
 	//	}
+
 	for (int i = 0; i < size(ticket); i++)
 	{
-
-		insertintofront(stoi(books[i][0]), books[i][1]);
+		
+		TicketPurchase(ticket[i][0], ticket[i][1], ticket[i][2], stoi(ticket[i][3]));
 	}
 }
 
