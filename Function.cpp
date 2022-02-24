@@ -148,6 +148,7 @@ void MainMenuAdmin() {
 				AddMovie(id, name, date, times, duration, seat, hall);
 
 				//Add Display Function here to see the output
+				DisplayMoive();
 
 				cout << "Enter 1 to continue insert, 0 to stop : ";
 				cin >> decision;
@@ -160,8 +161,8 @@ void MainMenuAdmin() {
 			break;
 		case 4: FilterMovie(keywordFilter);
 			break;*/
-		case 5: UpdateMovie();
-			break;
+		/*case 5: UpdateMovie();
+			break;*/
 		/*case 6: SortMovie();
 			break;
 		case 7: DeleteMovie();
@@ -188,8 +189,7 @@ void MainMenuCustomer() {
 
 	int choice;
 
-	do
-	{
+	
 
 		string idT, idM;
 		int seat;
@@ -215,7 +215,7 @@ void MainMenuCustomer() {
 
 				cout << "Enter Ticket Price : ";
 				cin >> ticketPrice;
-				TicketPurchase(idT, seat, idM, ticketPrice);
+				//TicketPurchase(idT, seat, idM, ticketPrice);
 
 				//Display the output here to see what have added
 
@@ -223,16 +223,16 @@ void MainMenuCustomer() {
 				cin >> decision;
 			}
 			break;
-		case 2: ViewTicket();
-			break;
-		case 3: SortTicketPrice();
-			break;
-		case 4: DisplayDetail();
-			break;
+		/*case 2: ViewTicket();
+			break;*/
+		//case 3: SortTicketPrice();
+			//break;
+		/*case 4: DisplayDetail();
+			break;*/
 		default: cout << "Invalid, Please Try Again";
 			break;
 		}
-	}
+	
 }
 
 /* Admin Management Functions (Movie Management) */
@@ -336,7 +336,16 @@ void AddMovie(string id, string name, string date, string times, float duration,
 
 //Display Movie
 void DisplayMoive() {
+	Movie* temp = movieHead;
 
+	while (temp != NULL)
+	{
+		cout << temp->movieId << " - " << temp->movieName << " - "
+			<< temp->movieDate << " - " << temp->movieTime << " - " << temp->movieDuration
+			<< " - " << temp->numOfSeat << temp->hall << endl;
+		temp = temp->nextAddress;
+	}
+	cout << endl;
 }
 
 //Search Movie
