@@ -229,8 +229,8 @@ void MainMenuCustomer() {
 				cin >> decision;
 			}
 			break;
-		/*case 2: ViewTicket();
-			break;*/
+		case 2: ViewTicket();
+			break;
 		//case 3: SortTicketPrice();
 			//break;
 		/*case 4: DisplayDetail();
@@ -463,15 +463,8 @@ void UpdateMovie() {
 }
 
 //Sort Movie based on quantity
-void SortMovie(int movieList[][6], int row) {
-	int i, j, temp1, temp2;
-	for (i = 0; i < row - 1; i++)
-	{
-		for (j = i + 1; j < row; j++)
-		{
-			if(movieList)
-		}
-	}
+void SortMovie() {
+
 
 
 	//int key, currentcolindex; 
@@ -548,6 +541,13 @@ void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 //View Purchase Transactions
 void ViewTicket() {
 	
+	Ticket* temp = ticketHead;
+
+		while (temp != NULL)
+		{
+			cout << temp->ticketId << " + " << temp->seat <<  " + " << temp->movieId <<  " + " << temp->ticketPrice << endl;
+			temp = temp->nextAddress;
+		}
 }
 
 //Sort Purchase Transaction based on total price
