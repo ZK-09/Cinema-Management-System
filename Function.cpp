@@ -266,13 +266,18 @@ void MainMenuCustomer() {
 				cout << "Enter 1 to continue; 0 to quit : ";
 				cin >> decision;
 			}
-			displayFromEnd();
+			ViewTicket(); //displayfromend
 
 			break;
 		case 2: 
 
-				ViewTicket(ticket);
+			for (int i = 0; i < 3; i++)
+			{
+				TicketPurchase((ticket[i][0]), ticket[i][1], ticket[i][2], stoi(ticket[i][3]));
+			}
+			ViewTicket();
 				break;
+
 			//case 3: SortTicketPrice();
 				//break;
 			/*case 4: DisplayDetail();
@@ -487,14 +492,7 @@ void displayFromFront() {
 	cout << "Ended";
 }
 
-void displayFromEnd() {
-	Ticket* temp = ticketTail;
 
-	while (temp != NULL) {
-		cout << temp->ticketId << "-" << temp->seat << "-" << temp->movieId << "-" << temp->ticketPrice << endl;
-		temp = temp->previous;
-	}
-}
 
 //Purchase Ticket --> Add Purchase
 
@@ -519,18 +517,14 @@ void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 	}
 }
 
+//display from end
 //View Purchase Transactions
-void ViewTicket(string ticket[3][4]) {
-	int ROW = 10;
-	for (int i = 0; i < ROW; i++) {
-			Ticket* newTicket = new Ticket;
-			newTicket->ticketId = ticket[i][0];
-			newTicket->movieId = ticket[i][2];
-			newTicket->seat = ticket[i][1];
-			newTicket->ticketPrice = stoi(ticket[i][3]);
+void ViewTicket() {
+	Ticket* temp = ticketTail;
 
-			cout << newTicket->ticketId << " " << newTicket->movieId << " " << newTicket->seat << " " << newTicket->ticketPrice << endl;
-			
+	while (temp != NULL) {
+		cout << temp->ticketId << "-" << temp->seat << "-" << temp->movieId << "-" << temp->ticketPrice << endl;
+		temp = temp->previous;
 	}
 }
 

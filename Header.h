@@ -42,8 +42,8 @@ void DisplayMoive();
 void displayFromFront();
 
 void TicketPurchase(string id, string seat, string movieId, float ticketPrice);
-void displayFromEnd();
-void ViewTicket(string ticket[3][4]);
+
+void ViewTicket();
 
 //#endif // !1
 
