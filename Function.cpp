@@ -520,17 +520,23 @@ void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 	newNode->nextAddress = NULL;
 	newNode->previous = NULL;
 
-	if (ticketHead == NULL) {
+	if (newTicketHead == NULL) {
 		newTicketHead = newTicketTail = newNode;
 
 	} else if (id < newTicketHead->ticketId) {
+
 		newNode->nextAddress = newTicketHead;
 		newTicketHead->previous = newNode;
 		newTicketHead = newNode;
 
+	} else if (id > newTicketTail->ticketId) {
+		newTicketTail->nextAddress = newNode;
+		newNode->previous = newTicketTail;
+		newTicketTail = newNode;
+	
 	} else {
-
-		Ticket* current = newNode->nextAddress;
+		 
+		Ticket* current = newTicketHead->nextAddress;
 
 		while (current != NULL) {
 			if (id < current->ticketId) {
