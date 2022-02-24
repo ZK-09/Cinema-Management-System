@@ -211,11 +211,11 @@ void MainMenuCustomer() {
 	cout << "||======================================================||\n";
 	cout << "||\t\t\tMENU\t\t\t\t||\n";
 	cout << "||======================================================||\n";
-	cout << "||1.Add Purchase\t\t\t\t\t\t||\n";
+	cout << "||1.Add Purchase\t\t\t\t\t||\n";
 	cout << "||2.View Purchase\t\t\t\t\t||\n";
 	cout << "||3.Sort Purchases\t\t\t\t\t||\n";
 	cout << "||4.Purchase Detail\t\t\t\t\t||\n";
-	cout << "||======================================================||\n\n";
+	cout << "||==============================================	========||\n\n";
 
 	const int sizes = 10;
 	string ticket[3][4] = {
