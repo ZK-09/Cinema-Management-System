@@ -10,7 +10,6 @@ int main() {
 		{"M0003","Till We Meet Again","2-2-2022","1000","Romance", "2","66","4"}
 	};
 
-	DisplayMoive();
 
 	string ticket[3][4] = {
 		{"T9001", "A45", "M0001", "109.00"},
