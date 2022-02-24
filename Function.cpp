@@ -70,6 +70,42 @@ void login() {
 
 }
 
+void CreateData() {
+	string movieId[] = {"M0001","M0002","M0003"};
+	string movieName[] = { "Harry Potter","Friends","Till We Meet Again" };
+	string movieDate[] = { "29-9-2022","18-6-2022","2-2-2022" };
+	string movieTime[] = { "1830","1400","1000" };
+	string categories[] = { "Comedy","Comedy","Romance" };
+	float movieDuration[] = { 3,4,2 };
+	int numOfSeat[] = {100,75,66};
+	int hall[] = {3,1,4 };
+
+	for (int i = 0; i < 3; i++) {
+		Movie newMovie =  Movie();
+		newMovie.movieId = movieId[i];
+		newMovie.movieName = movieName[i];
+		newMovie.movieDate = movieDate[i];
+		newMovie.movieTime = movieTime[i];
+		newMovie.categories = categories[i];
+		newMovie.movieDuration = movieDuration[i];
+		newMovie.numOfSeat = numOfSeat[i];
+		newMovie.hall = hall[i];
+	}
+	
+
+	string ticketId[] = {"T9001","T9056","T9002"};		
+	string seat[] = { "A45","D22","C78" };			
+	string movieId[] = { "M0001","M0001","M0001" };			
+	float ticketPrice[] = { 109.00, 25.00, 50.50};
+	for (int i = 0; i < 3; i++) {
+		Ticket newTicket = Ticket();
+		newTicket.ticketId = ticketId[i];
+		newTicket.seat = seat[i];
+		newTicket.movieId = movieId[i];
+		newTicket.ticketPrice = ticketPrice[i];
+	}
+}
+
 //Admin Menu Function
 void MainMenuAdmin() {
 	cout << "||======================================================||\n";
