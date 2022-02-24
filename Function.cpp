@@ -132,6 +132,7 @@ void MainMenuAdmin() {
 
 		/* Movie Add Variables*/
 		string id, name, date, times, cat;
+		string keyword;
 		float duration;
 		int seat;
 		int hall;
@@ -143,6 +144,11 @@ void MainMenuAdmin() {
 		switch (choice) {
 
 			case 1: 	
+
+				for (int i = 0; i < 3; i++) {
+
+					AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));
+				}
 
 				while (decision != 0) {
 					cout << "Enter Movie Id : ";
@@ -179,16 +185,22 @@ void MainMenuAdmin() {
 				}
 
 				//Display all the movie listed
-				cout << "Movie are listed below : " << endl;
-				DisplayMoive();
+				cout << endl << "Movie are listed below : " << endl;
+				ViewMovie();
 		
 				break;
 
 		/*case 2: DisplayMoive();
+			break;*/
+		case 3: 
+			
+			cout << "Enter Search Keyword : ";
+			cin >> keyword;
+
+			SearchMovie(keyword);
+
 			break;
-		case 3: SearchMovie(keyword);
-			break;
-		case 4: FilterMovie(keywordFilter);
+		/*case 4: FilterMovie(keywordFilter);
 			break;*/
 		case 5: UpdateMovie();
 			break;
@@ -217,7 +229,7 @@ void MainMenuCustomer() {
 	cout << "||4.Purchase Detail\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
-	const int sizes = 10;
+	
 	string ticket[3][4] = {
 		{"T9001", "A45", "M0001", "109.00"},
 		{"T9056", "D22", "M0001", "25.00"},
@@ -266,7 +278,7 @@ void MainMenuCustomer() {
 				cout << "Enter 1 to continue; 0 to quit : ";
 				cin >> decision;
 			}
-			ViewTicket(); //displayfromend
+			ViewTicket(); //display from end
 
 			break;
 		case 2: 
@@ -276,7 +288,8 @@ void MainMenuCustomer() {
 				TicketPurchase((ticket[i][0]), ticket[i][1], ticket[i][2], stoi(ticket[i][3]));
 			}
 			ViewTicket();
-				break;
+
+			break;
 
 			//case 3: SortTicketPrice();
 				//break;
@@ -302,15 +315,26 @@ void AddMovie(string id, string name, string date, string times, string cat, flo
 	//Sorted list still do not have any item
 	if (movieHead == NULL) {
 
-		movieHead = newNode;
+		movieHead = movieTail = newNode;
 
 	}
 	else {
-		
-
+		newNode->nextAddress = movieHead;
+		movieHead->previous = newNode;
+		movieHead = newNode;
 	
 	}
 
+}
+
+void ViewMovie() {
+	Movie* temp = movieTail;
+
+	while (temp != NULL) {
+		cout << temp->movieId << "-" << temp->movieName << "-" << temp->movieDate << "-" << temp->movieTime
+			<< "-" << temp->categories << "-" << temp->movieDuration << "-" << temp->numOfSeat << "-" << temp->hall << endl;
+		temp = temp->previous;
+	}
 }
 
 //Display Movie
@@ -333,6 +357,20 @@ void DisplayMoive() {
 //Search Movie
 void SearchMovie(string keyword) {
 
+
+	Movie* temp = movieHead;
+
+	while (temp != NULL) {
+		if (temp->movieId == keyword) {
+			cout << temp->movieId << " " << temp->movieName << " " << temp->movieDate << " " <<
+				temp->movieTime << " " << temp->movieDuration << " " << temp->categories << " " <<
+				temp->numOfSeat << " " << temp->hall << endl;
+
+		} else {
+			cout << "Movie Not Found ..";
+
+		}
+	}
 }
 
 //Filter Movie
@@ -413,14 +451,12 @@ void UpdateMovie() {
 
 	int decision;
 	cout << "Enter 1-7 as option to update :";
-	cin.ignore();
 	cin >> decision;
-
+	cin.ignore();
 
 	switch (decision) {
 		case 1:
 			IdUpdate(temp);
-			break;
 
 		case 2 :
 			NameUpdate(temp);
@@ -492,31 +528,26 @@ void displayFromFront() {
 		temp = temp->nextAddress;
 	}
 
-	cout << "Ended";
 }
-
-
 
 //Purchase Ticket --> Add Purchase
 
 //Insert to front using head
 void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 	
-	Ticket* newNode = new Ticket;
-	newNode->ticketId = id;
-	newNode->seat = seat;
-	newNode->movieId = movieId;
-	newNode->ticketPrice = ticketPrice;
+	Ticket* newNode = createTicketNode(id, seat, movieId, ticketPrice);
 
 	newNode->nextAddress = NULL;
 	newNode->previous = NULL;
 
 	if (ticketHead == NULL) {
 		ticketHead = ticketTail = newNode;
+
 	} else {
 		newNode->nextAddress = ticketHead;
 		ticketHead->previous = newNode;
 		ticketHead = newNode;
+
 	}
 }
 
