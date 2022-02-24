@@ -7,9 +7,10 @@ struct Movie {
 	string movieName;		//The name of the movie
 	string movieDate;		//The date of movie
 	string movieTime;		//The movie start time
+	string categories;		//Categories of the movie
 	float movieDuration;	//Duration of the movie
 	int numOfSeat;			//The available number of seats in the hall
-	char hall;				//The Hall of the movie	eg. 'A', 'C' , 'D' Hall
+	int hall;				//The Hall of the movie	eg. 'A' == 1, 'C' == 3 , 'D' == 4 Hall
 
 	Movie* nextAddress;
 	Movie* previous;
@@ -29,13 +30,14 @@ struct Ticket {
 }*ticketHead, * ticketTail, *newTicketHead, *newTicketTail;
 
 //Constructor of Movie & Ticket node
-Movie* createMovieNode(string id, string name, string date, string time, float duration, int seat, int hall) {
+Movie* createMovieNode(string id, string name, string date, string time, string cat, float duration, int seat, int hall) {
 
 	Movie* newMovie = new Movie;
 	newMovie->movieId = id;
 	newMovie->movieName = name;
 	newMovie->movieDate = date;
 	newMovie->movieTime = time;
+	newMovie->categories = cat;
 	newMovie->movieDuration = duration;
 	newMovie->numOfSeat = seat;			
 	newMovie->hall = hall;
@@ -113,15 +115,16 @@ void MainMenuAdmin() {
 		/* Movie Add Variables*/
 		string id, name, date, times;
 		float duration;
-		int seat, hall;
+		int seat;
+		int hall;
 		int decision = 1;
 
 		cout << "Enter selection : ";
 		cin >> choice;
+
 		switch (choice) {
 
-		case 1: 
-			
+		case 1: 			
 			
 			while (decision != 0) {
 				cout << "Enter Movie Id : ";
@@ -142,17 +145,20 @@ void MainMenuAdmin() {
 				cout << "Enter Movie Seat : ";
 				cin >> seat;
 
-				cout << "Enter Movie Hall : ";
+				cout << "Enter Movie Hall : ";				
 				cin >> hall;
 
-				AddMovie(id, name, date, times, duration, seat, hall);
+				AddMovie(id, name, date, times, duration, seat, hall );
 
 				//Add Display Function here to see the output
-				DisplayMoive();
+				
 
 				cout << "Enter 1 to continue insert, 0 to stop : ";
 				cin >> decision;
+				
 			}
+
+			DisplayMoive();
 		
 			break;
 		/*case 2: DisplayMoive();
@@ -242,10 +248,10 @@ void errorDetection() {
 }
 
 //Add Movie --> Insert into sorted list
-void AddMovie(string id, string name, string date, string times, float duration, int seat, int hall) {
+void AddMovie(string id, string name, string date, string times, string cat, float duration, int seat, int hall) {
 	
-	Movie* newNode = createMovieNode(id, name, date, times, duration, seat, hall);
-
+	Movie* newNode = createMovieNode(id, name, date, times, cat,duration, seat, hall);
+	
 	newNode->nextAddress = NULL;
 	newNode->previous = NULL;
 
@@ -267,13 +273,14 @@ void AddMovie(string id, string name, string date, string times, float duration,
 	} else {
 		
 		Movie* current = newNode->nextAddress;	//Insert in the middle of the list
+		//Movie* previous = newMovieHead;
 
 		while (current != NULL) {
 
 			if (id < current->movieId) {
 				break;
 			}
-
+			
 			current = current->nextAddress;
 		}
 
@@ -336,13 +343,14 @@ void AddMovie(string id, string name, string date, string times, float duration,
 
 //Display Movie
 void DisplayMoive() {
-	Movie* temp = movieHead;
+
+	Movie* temp = newMovieHead;
 
 	while (temp != NULL)
 	{
-		cout << temp->movieId << " - " << temp->movieName << " - "
-			<< temp->movieDate << " - " << temp->movieTime << " - " << temp->movieDuration
-			<< " - " << temp->numOfSeat << temp->hall << endl;
+		cout << temp->movieId << "-" << temp->movieName << "-"
+			<< temp->movieDate << "-" << temp->movieTime << "-" << temp->movieDuration
+			<< "-" << temp->numOfSeat << "-" << temp->hall << endl;
 		temp = temp->nextAddress;
 	}
 	cout << endl;
