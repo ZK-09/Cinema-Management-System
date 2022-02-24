@@ -173,7 +173,7 @@ void MainMenuAdmin() {
 					AddMovie(id, name, date, times, cat, duration, seat, hall );	//Function
 					
 
-					cout << "Enter 1 to continue insert, 0 to stop : ";
+					cout << "Enter 1 to continue; 0 to exit: ";
 					cin >> decision;
 				
 				}
@@ -190,8 +190,8 @@ void MainMenuAdmin() {
 			break;
 		case 4: FilterMovie(keywordFilter);
 			break;*/
-		/*case 5: UpdateMovie();
-			break;*/
+		case 5: UpdateMovie();
+			break;
 		/*case 6: SortMovie();
 			break;
 		case 7: DeleteMovie();
@@ -338,7 +338,8 @@ void FilterMovie(string keywordFilter) {
 //Update Movie ID
 void IdUpdate(Movie* temp) {
 	cout << "Enter New Movie ID : ";
-	getline(cin, temp->movieId);
+	cin >> temp->movieId;
+
 	cout << endl << "Update Successfullly." << endl;
 }
 
@@ -407,12 +408,14 @@ void UpdateMovie() {
 
 	int decision;
 	cout << "Enter 1-7 as option to update :";
-	cin >> decision;
 	cin.ignore();
+	cin >> decision;
+
 
 	switch (decision) {
 		case 1:
 			IdUpdate(temp);
+			break;
 
 		case 2 :
 			NameUpdate(temp);
