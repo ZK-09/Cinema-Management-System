@@ -57,6 +57,3 @@ void SortMovie(struct Movie** head);
 void SortTicketPrice(struct Ticket** head);
 
 //#endif // !1
-
-
-
