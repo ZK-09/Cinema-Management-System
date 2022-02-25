@@ -92,11 +92,11 @@ void MainMenuAdmin() {
 	cout << "||8.Exit\t\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
-	string movie[3][8] = {
-		{"M0001","Harry Potter","29-9-2022","1830", "Comedy", "3","100","3"},
-		{"M0002","Friends","18-6-2022","1400","Comedy", "4","75","1"},
-		{"M0003","Till We Meet Again","2-2-2022","1000","Romance", "2","66","4"}
-	};
+	//string movie[3][8] = {
+	//	{"M0001","Harry Potter","29-9-2022","1830", "Comedy", "3","100","3"},
+	//	{"M0002","Friends","18-6-2022","1400","Comedy", "4","75","1"},
+	//	{"M0003","Till We Meet Again","2-2-2022","1000","Romance", "2","66","4"}
+	//};
 
 
 	int choice;
@@ -275,11 +275,11 @@ void MainMenuCustomer() {
 	cout << "||======================================================||\n\n";
 
 
-	string ticket[3][4] = {
-		{"T9001", "A45", "M0001", "109.00"},
-		{"T9056", "D22", "M0001", "25.00"},
-		{"T9001", "C78", "M0001", "50.50"}
-	};
+	//string ticket[3][4] = {
+	//	{"T9001", "A45", "M0001", "109.00"},
+	//	{"T9056", "D22", "M0001", "25.00"},
+	//	{"T9001", "C78", "M0001", "50.50"}
+	//};
 
 
 
@@ -330,6 +330,7 @@ void MainMenuCustomer() {
 	case 3: 
 		
 		SortTicketPrice(&ticketHead);
+		DisplayTicket();
 		break;
 
 	case 4:
@@ -705,7 +706,7 @@ void ViewTicket() {
 
 //Sort Purchase Transaction based on total price
 void SortTicketPrice(struct Ticket ** head) {
-	/*struct Movie* current = *head , *index = NULL;
+	struct Ticket* current = *head , *index = NULL;
 
 	int temp;
 
@@ -717,10 +718,10 @@ void SortTicketPrice(struct Ticket ** head) {
 			index = current->nextAddress;
 
 			while (index != NULL) {
-				if (current->numOfSeat > index->numOfSeat) {
-					temp = current->numOfSeat;
-					current->numOfSeat = index->numOfSeat;
-					index->numOfSeat = temp;
+				if (current->ticketPrice > index->ticketPrice) {
+					temp = current->ticketPrice;
+					current->ticketPrice = index->ticketPrice;
+					index->ticketPrice = temp;
 				}
 
 				index = index->nextAddress;
@@ -728,7 +729,7 @@ void SortTicketPrice(struct Ticket ** head) {
 			current = current->nextAddress;
 		}
 
-	}*/
+	}
 
 
 }
