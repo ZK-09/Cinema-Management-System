@@ -384,7 +384,7 @@ void ViewMovie() {
 
 //Display Movie
 void DisplayMoive() {
-
+	
 	Movie* temp = movieHead;
 	cout << "Movie ID-Movie Name-Movie Date-Movie Time-Movie Categories-Movie Duration-Movie Seat-Movie Hall" << endl;
 	while (temp != NULL)
@@ -653,34 +653,27 @@ bool DeleteMovie(string keyword) {
 
 void deletefromfront()
 {
-	//step 1: before delete will check whether the list is empty?
+
 	if (movieHead == NULL)
 		return;
 
-	//step 2: create a temp pointer
 	Movie* temp = movieHead;
 
-	//step 3: move the head to the next point
 	movieHead = movieHead->nextAddress;
-
-	//step 4: before delete display the deleted data first!
 	cout << "Movie name " << temp->movieName << " is deleted, returning to main menu" << endl;
-
-	//step 5: remove the data from the linked list
 	delete temp;
 
-	//optional: if you have size, then after delete you must reduce the size by 1
 }
 
 void deletefromspecificlocation(string deleteId)
 {
-	//situation 1: list is empty
+
 	if (movieHead == NULL)
 	{
 		cout << "List is empty! Can't use the delete function!" << endl;
 		return;
 	}
-	//situation 2: list not empty but use the deleted id in first location
+
 	else if (movieHead->movieId == deleteId)
 	{
 		Movie* temp = movieHead;
@@ -688,7 +681,7 @@ void deletefromspecificlocation(string deleteId)
 		cout << "Movie name " << temp->movieName << " is deleted, returning to main menu" << endl;
 		delete temp;
 	}
-	//situation 3: list not empty not the first location
+
 	else
 	{
 		Movie* temp = movieHead;
@@ -712,7 +705,6 @@ void deletefromspecificlocation(string deleteId)
 
 void deletefromEnd()
 {
-	//Check if the list is empty
 	if (movieHead == NULL)
 		return;
 
@@ -722,13 +714,10 @@ void deletefromEnd()
 	while (temp->nextAddress != NULL) {
 		previous = temp;
 		temp = temp->nextAddress;
-
 	}
 
-	//Change the previous item nextaddress to NULL
 	if (previous == NULL) {
 		movieHead = NULL;
-
 	}
 	else {
 		previous->nextAddress = NULL;
