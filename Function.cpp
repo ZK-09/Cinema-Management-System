@@ -197,6 +197,7 @@ void MainMenuAdmin() {
 			cout << "Please enter the category you want to search(Romance, Comedy, Action) :";
 			cin >> keyword;
 			searchFound = FilterMovie(keyword);
+			
 		}
 		break;
 
@@ -385,7 +386,7 @@ void ViewMovie() {
 void DisplayMoive() {
 
 	Movie* temp = movieHead;
-
+	cout << "Movie ID-Movie Name-Movie Date-Movie Time-Movie Categories-Movie Duration-Movie Seat-Movie Hall" << endl;
 	while (temp != NULL)
 	{
 		cout << temp->movieId << "-" << temp->movieName << "-"
@@ -432,10 +433,11 @@ bool SearchMovie(string keyword) {
 //Filter Movie
 bool FilterMovie(string keywordFilter) {
 	Movie* temp = movieHead;
-	bool succesCount = 0;
+	bool succesCount = false;
 	while (temp != NULL)
 	{
 		if (temp->categories == keywordFilter) {
+			cout << "Movie ID-Movie Name-Movie Date-Movie Time-Movie Categories-Movie Duration-Movie Seat-Movie Hall" << endl;
 			cout << temp->movieId << "-" << temp->movieName << "-"
 				<< temp->movieDate << "-" << temp->movieTime << "-" << temp->categories << "-" << temp->movieDuration
 				<< "-" << temp->numOfSeat << "-" << temp->hall << endl;
@@ -447,13 +449,15 @@ bool FilterMovie(string keywordFilter) {
 			temp = temp->nextAddress;
 		}
 	}
-	if (succesCount = 1) {
-		cout << "category found, returning to main menu" << endl;
-		return true;
+	if (succesCount == false) {
+		cout << "category not found, please try again" << endl;
+		
+		return false;
+		
 	}
 	else {
-		cout << "category not found, please try again" << endl;
-		return false;
+		cout << "category found, returning to main menu" << endl;
+		return true;
 	}
 
 }
@@ -613,7 +617,6 @@ bool DeleteMovie(string keyword) {
 		if (temp->movieId == keyword) {
 
 			if (temp->previous == NULL) {
-				cout << "first one" << endl;
 				deletefromfront();
 				succesCount = true;
 				break;
@@ -621,14 +624,12 @@ bool DeleteMovie(string keyword) {
 			}
 			else if (temp->nextAddress == NULL)
 			{
-				cout << "last one" << endl;
 				deletefromEnd();
 				succesCount = true;
 				break;
 			}
 			else
 			{
-				cout << "middle one" << endl;
 				deletefromspecificlocation(keyword);
 				succesCount = true;
 				break;
@@ -640,7 +641,7 @@ bool DeleteMovie(string keyword) {
 			temp = temp->nextAddress;
 		}
 	}
-	if (succesCount = true) {
+	if (succesCount == true) {
 		cout << "deleted successfully, viewing the list after delete" << endl;
 		return true;
 	}
@@ -828,9 +829,9 @@ bool DisplayDetail(string TicketIdentifier) {
 
 		if (temp->ticketId == TicketIdentifier) {
 
-			cout << "ticket found, ticket detail is : ";
-			cout << temp->ticketId << "\t" << temp->seat << "\t" << temp->movieId << "\t" << temp->ticketPrice << endl;
-			cout << "the movie in this ticket is : ";
+			cout << "ticket found, ticket detail is : "<<endl;
+			cout << temp->ticketId << "||" << temp->seat << "||" << temp->movieId << "||" << temp->ticketPrice << endl;
+			cout << "the movie in this ticket is : " <<endl;
 			bool moviewsearcher = SearchMovie(temp->movieId);
 
 			temp = temp->nextAddress;
@@ -841,7 +842,7 @@ bool DisplayDetail(string TicketIdentifier) {
 			temp = temp->nextAddress;
 		}
 	}
-	if (succesCount = 1) {
+	if (succesCount == 1) {
 
 		cout << "details displayed, returning to main menu" << endl;
 		return true;
