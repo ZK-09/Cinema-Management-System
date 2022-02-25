@@ -47,6 +47,7 @@ void IdUpdate(Movie* temp);
 void TicketPurchase(string id, string seat, string movieId, float ticketPrice);
 bool DisplayDetail(string TicketIdentifier);
 bool FilterMovie(string keywordFilter);
+bool DeleteMovie(string keyword);
 void ViewTicket();
 
 //#endif // !1

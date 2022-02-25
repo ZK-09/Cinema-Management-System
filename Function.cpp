@@ -209,9 +209,26 @@ void MainMenuAdmin() {
 		/*case 5: UpdateMovie();
 			break;*/
 		/*case 6: SortMovie();
-			break;
-		case 7: DeleteMovie();
 			break;*/
+		case 7:
+			cout << "Please enter the Movie Id you want to delete";
+			cin >> keyword;
+
+			searchFound = DeleteMovie(keyword);
+			if (searchFound == true) {
+				system("pause");
+				DisplayMoive();
+				system("pause");
+				system("CLS");
+				MainMenuAdmin();
+
+			}
+			else {
+				cout << "Please enter the Movie Id you want to delete";
+				cin >> keyword;
+				searchFound = DeleteMovie(keyword);
+			}
+			break;
 		case 8: 
 			break;
 			default: 
@@ -569,8 +586,39 @@ void SortMovie() {
 }
 
 //Delete Movie from Movie List
-void DeleteMovie() {
+bool DeleteMovie(string keyword){
+	Movie* temp = movieHead;
+	bool succesCount = 0;
+	while (temp != NULL)
+	{
+		if (temp->movieId == keyword) {
 
+			if (temp->previous == NULL) {
+				temp = temp->nextAddress;
+			}
+			else if (temp->nextAddress==NULL)
+			{
+
+			}
+			else
+			{
+
+			}
+
+		}
+		else
+		{
+			temp = temp->nextAddress;
+		}
+	}
+	if (succesCount = 1) {
+		cout << "deleted successfully, viewing the list after delete" << endl;
+		return true;
+	}
+	else {
+		cout << "item not found, please try again" << endl;
+		return false;
+	}
 }
 
 /* Customer Purchasing Functions (Purchasing Ticket) */
