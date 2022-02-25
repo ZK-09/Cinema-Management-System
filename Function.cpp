@@ -248,8 +248,8 @@ void MainMenuAdmin() {
 		case 8: 
 			break;
 			default: 
-				cout << "Invalid, Please Try Again";
-				break;
+				cout << "Invalid, Please Try Again" << endl;
+				MainMenuAdmin();
 		}
 	
 	
@@ -338,8 +338,8 @@ void MainMenuCustomer() {
 		case 5:
 			break;
 
-			default: cout << "Invalid, Please Try Again";
-				break;
+			default: cout << "Invalid, Please Try Again" << endl;
+				MainMenuCustomer();
 		}
 	
 }
@@ -638,8 +638,9 @@ void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 void ViewTicket() {
 	Ticket* temp = ticketTail;
 
+	cout << "Ticket ID\tSeat\tMovie Id\tTicket Price" << endl;
 	while (temp != NULL) {
-		cout << temp->ticketId << "-" << temp->seat << "-" << temp->movieId << "-" << temp->ticketPrice << endl;
+		cout << temp->ticketId << "\t\t" << temp->seat << "\t" << temp->movieId << "\t\t" << temp->ticketPrice << endl;
 		temp = temp->previous;
 	}
 	MainMenuCustomer();
