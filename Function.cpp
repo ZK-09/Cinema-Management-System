@@ -238,7 +238,7 @@ void MainMenuAdmin() {
 			else {
 				cout << "please enter the category you want to search(Romance, Comedy, Action) :";
 				cin >> keyword;
-				FilterMovie(keyword);
+				filter = FilterMovie(keyword);
 			}
 			break;
 		/*case 5: UpdateMovie();
@@ -641,6 +641,28 @@ void SortTicketPrice(string idd, string seat, string movieId) {
 }
 
 //View Purchase Details
-void DisplayDetail() {
+bool DisplayDetail(string TicketIdentifier) {
+	Ticket* temp = ticketHead;
+	bool succesCount = 0;
+	while (temp != NULL)
+	{
+		if (temp->ticketId == TicketIdentifier) {
+			cout << temp->ticketId << "-" << temp->seat << "-" << temp->movieId << "-" << temp->ticketPrice << endl;
+			temp = temp->nextAddress;
+			succesCount = 1;
+		}
+		else
+		{
+			temp = temp->nextAddress;
+		}
+	}
+	if (succesCount = 1) {
+		cout << "details displayed, returning to main menu" << endl;
+		return true;
+	}
+	else {
+		cout << "ticket not found, please try again" << endl;
+		return false;
+	}
 
 }
