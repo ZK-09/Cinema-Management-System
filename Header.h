@@ -40,7 +40,7 @@ void MainMenuCustomer();
 void AddMovie(string id, string name, string date, string times, string cat, float duration, int seat, int hall);
 void DisplayMoive();
 void ViewMovie();
-void SearchMovie(string keyword);
+bool SearchMovie(string keyword);
 void displayFromFront();
 void UpdateMovie();
 void IdUpdate(Movie* temp);
