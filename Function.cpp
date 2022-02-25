@@ -69,7 +69,7 @@ void login() {
 	
 	} else {
 
-		cout << "You have to login with an account"
+		cout << "You have to login with an account";
 	}
 
 }
@@ -156,10 +156,10 @@ void MainMenuAdmin() {
 
 			case 1: 	
 
-				for (int i = 0; i < 3; i++) {
+				/*for (int i = 0; i < 3; i++) {
 
 					AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));
-				}
+				}*/
 
 				while (decision != 0) {
 					cout << "Enter Movie Id : ";
