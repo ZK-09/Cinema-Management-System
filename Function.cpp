@@ -75,12 +75,6 @@ void login() {
 
 }
 
-
-
-
-bool FilterMovie(string keywordFilter);
-
-
 //Admin Menu Function
 void MainMenuAdmin() {
 	cout << "||======================================================||\n";
@@ -122,9 +116,6 @@ void MainMenuAdmin() {
 	switch (choice) {
 
 	case 1:
-
-
-
 		while (decision != 0) {
 			cout << "Enter Movie Id : ";
 			cin >> id;
@@ -226,7 +217,7 @@ void MainMenuAdmin() {
 
 		if (searchFound == true) {
 			UpdateMovie();
-			ViewMovie();
+
 		}
 
 		break;

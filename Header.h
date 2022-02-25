@@ -41,6 +41,7 @@ void AddMovie(string id, string name, string date, string times, string cat, flo
 void DisplayMoive();
 void ViewMovie();
 bool SearchMovie(string keyword);
+bool FilterMovie(string keywordFilter);
 void DisplayTicket();
 void UpdateMovie();
 void IdUpdate(Movie* temp);
