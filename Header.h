@@ -50,7 +50,9 @@ bool DisplayDetail(string TicketIdentifier);
 bool FilterMovie(string keywordFilter);
 bool DeleteMovie(string keyword);
 void ViewTicket();
-
+void deletefromEnd();
+void deletefromspecificlocation(string deleteId);
+void deletefromfront();
 void SortMovie(struct Movie** head);
 void SortTicketPrice(struct Ticket** head);
 

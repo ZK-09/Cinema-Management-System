@@ -623,21 +623,31 @@ void SortMovie(struct Movie** head) {
 //Delete Movie from Movie List
 bool DeleteMovie(string keyword) {
 	Movie* temp = movieHead;
-	bool succesCount = 0;
+	bool succesCount = false;
 	while (temp != NULL)
 	{
 		if (temp->movieId == keyword) {
 
 			if (temp->previous == NULL) {
-				temp = temp->nextAddress;
+				cout << "first one" << endl;
+				deletefromfront();
+				succesCount = true;
+				break;
+
 			}
 			else if (temp->nextAddress == NULL)
 			{
-
+				cout << "last one" << endl;
+				deletefromEnd();
+				succesCount = true;
+				break;
 			}
 			else
 			{
-
+				cout << "middle one" << endl;
+				deletefromspecificlocation(keyword);
+				succesCount = true;
+				break;
 			}
 
 		}
@@ -646,7 +656,7 @@ bool DeleteMovie(string keyword) {
 			temp = temp->nextAddress;
 		}
 	}
-	if (succesCount = 1) {
+	if (succesCount = true) {
 		cout << "deleted successfully, viewing the list after delete" << endl;
 		return true;
 	}
@@ -654,6 +664,94 @@ bool DeleteMovie(string keyword) {
 		cout << "item not found, please try again" << endl;
 		return false;
 	}
+}
+
+void deletefromfront()
+{
+	//step 1: before delete will check whether the list is empty?
+	if (movieHead == NULL)
+		return;
+
+	//step 2: create a temp pointer
+	Movie* temp = movieHead;
+
+	//step 3: move the head to the next point
+	movieHead = movieHead->nextAddress;
+
+	//step 4: before delete display the deleted data first!
+	cout << "Movie name " << temp->movieName << " is deleted, returning to main menu" << endl;
+
+	//step 5: remove the data from the linked list
+	delete temp;
+
+	//optional: if you have size, then after delete you must reduce the size by 1
+}
+
+void deletefromspecificlocation(string deleteId)
+{
+	//situation 1: list is empty
+	if (movieHead == NULL)
+	{
+		cout << "List is empty! Can't use the delete function!" << endl;
+		return;
+	}
+	//situation 2: list not empty but use the deleted id in first location
+	else if (movieHead->movieId == deleteId)
+	{
+		Movie* temp = movieHead;
+		movieHead = movieHead->nextAddress;
+		cout << "Movie name " << temp->movieName << " is deleted, returning to main menu" << endl;
+		delete temp;
+	}
+	//situation 3: list not empty not the first location
+	else
+	{
+		Movie* temp = movieHead;
+		Movie* prev = NULL;
+
+		while (temp != NULL)
+		{
+			if (temp->movieId == deleteId)
+			{
+				prev->nextAddress = temp->nextAddress;
+				cout << "Movie name " << temp->movieName << " is deleted, returning to main menu" << endl;
+				delete temp;
+				return;
+			}
+			prev = temp;
+			temp = temp->nextAddress;
+		}
+		cout << "No such id! " << endl;
+	}
+}
+
+void deletefromEnd()
+{
+	//Check if the list is empty
+	if (movieHead == NULL)
+		return;
+
+	Movie* temp = movieHead;
+	Movie* previous = NULL;
+
+	while (temp->nextAddress != NULL) {
+		previous = temp;
+		temp = temp->nextAddress;
+
+	}
+
+	//Change the previous item nextaddress to NULL
+	if (previous == NULL) {
+		movieHead = NULL;
+
+	}
+	else {
+		previous->nextAddress = NULL;
+	}
+
+	cout << "Movie name " << temp->movieName << " is deleted, returning to main menu" << endl;
+
+	delete temp;
 }
 
 /* Customer Purchasing Functions (Purchasing Ticket) */
