@@ -4,8 +4,6 @@
 
 using namespace std;
 
-#define size = 10;
-
 struct Movie {
 
 	string movieId;			//The Id of the movie
@@ -57,6 +55,3 @@ void SortMovie(struct Movie** head);
 void SortTicketPrice(struct Ticket** head);
 
 //#endif // !1
-
-
-

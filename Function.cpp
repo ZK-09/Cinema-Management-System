@@ -50,7 +50,7 @@ void login() {
 	cout << "||\t\t\tLOGIN\t\t\t\t||\n";
 	cout << "||======================================================||\n";
 
-	cout << "Enter username : ";
+	cout << "Enter Username : ";
 	cin >> username;
 
 	cout << "Enter Password : ";
@@ -175,9 +175,16 @@ void MainMenuAdmin() {
 
 		}
 		else {
-			cout << "Movie Id not found, enter again :";
-			cin >> keyword;
-			SearchMovie(keyword);
+			
+			while (searchFound == false) {
+				cout << "Movie Id not found, enter again :";
+				cin >> keyword;
+				searchFound = SearchMovie(keyword);
+			}
+
+			system("pause");
+			system("CLS");
+			MainMenuAdmin();
 		}
 		break;
 
@@ -194,10 +201,16 @@ void MainMenuAdmin() {
 
 		}
 		else {
-			cout << "Please enter the category you want to search(Romance, Comedy, Action) :";
-			cin >> keyword;
-			searchFound = FilterMovie(keyword);
-			
+			while (searchFound == false) {
+				cout << "Please enter the category you want to search(Romance, Comedy, Action) :";
+				cin >> keyword;
+				searchFound = FilterMovie(keyword);
+			}
+
+			system("pause");
+			system("CLS");
+			MainMenuAdmin();
+
 		}
 		break;
 
@@ -223,6 +236,7 @@ void MainMenuAdmin() {
 		SortMovie(&movieHead);
 		
 		DisplayMoive();
+		MainMenuAdmin();
 		break;
 	case 7:
 		cout << "Please enter the Movie Id you want to delete";
@@ -304,18 +318,19 @@ void MainMenuCustomer() {
 			cin >> decision;
 		}
 		ViewTicket(); //display from end
-
+		MainMenuCustomer();
 		break;
 	case 2:
 
 		DisplayTicket();
-
+		MainMenuCustomer();
 		break;
 
 	case 3: 
 		
 		SortTicketPrice(&ticketHead);
 		DisplayTicket();
+		MainMenuCustomer();
 		break;
 
 	case 4:
@@ -587,7 +602,7 @@ void SortMovie(struct Movie** head) {
 
 	if (head == NULL) {
 		return;
-
+		
 	} else {
 		while (current != NULL) {
 			index = current->nextAddress;
@@ -603,9 +618,9 @@ void SortMovie(struct Movie** head) {
 			}
 			current = current->nextAddress;
 		}
-
+		
 	}
-
+	
 }
 
 //Delete Movie from Movie List
@@ -733,9 +748,9 @@ void deletefromEnd()
 //Display From Front
 void DisplayTicket() {
 	Ticket* temp = ticketHead;
-
+	cout << "Ticket ID\tSeat\tMovie Id\tTicket Price" << endl;
 	while (temp != NULL) {
-		cout << temp->ticketId << "-" << temp->seat << "-" << temp->movieId << "-" << temp->ticketPrice << endl;
+		cout << temp->ticketId << "\t\t" << temp->seat << "\t" << temp->movieId << "\t\t" << temp->ticketPrice << endl;
 		temp = temp->nextAddress;
 	}
 
@@ -773,7 +788,6 @@ void ViewTicket() {
 		cout << temp->ticketId << "\t\t" << temp->seat << "\t" << temp->movieId << "\t\t" << temp->ticketPrice << endl;
 		temp = temp->previous;
 	}
-	
 }
 
 //Sort Purchase Transaction based on total price
@@ -802,7 +816,6 @@ void SortTicketPrice(struct Ticket ** head) {
 		}
 
 	}
-
 
 }
 
