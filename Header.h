@@ -4,8 +4,6 @@
 
 using namespace std;
 
-#define size = 10;
-
 struct Movie {
 
 	string movieId;			//The Id of the movie

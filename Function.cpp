@@ -50,7 +50,7 @@ void login() {
 	cout << "||\t\t\tLOGIN\t\t\t\t||\n";
 	cout << "||======================================================||\n";
 
-	cout << "Enter username : ";
+	cout << "Enter Username : ";
 	cin >> username;
 
 	cout << "Enter Password : ";
@@ -175,9 +175,16 @@ void MainMenuAdmin() {
 
 		}
 		else {
-			cout << "Movie Id not found, enter again :";
-			cin >> keyword;
-			SearchMovie(keyword);
+			
+			while (searchFound == false) {
+				cout << "Movie Id not found, enter again :";
+				cin >> keyword;
+				searchFound = SearchMovie(keyword);
+			}
+
+			system("pause");
+			system("CLS");
+			MainMenuAdmin();
 		}
 		break;
 
@@ -194,10 +201,16 @@ void MainMenuAdmin() {
 
 		}
 		else {
-			cout << "Please enter the category you want to search(Romance, Comedy, Action) :";
-			cin >> keyword;
-			searchFound = FilterMovie(keyword);
-			
+			while (searchFound == false) {
+				cout << "Please enter the category you want to search(Romance, Comedy, Action) :";
+				cin >> keyword;
+				searchFound = FilterMovie(keyword);
+			}
+
+			system("pause");
+			system("CLS");
+			MainMenuAdmin();
+
 		}
 		break;
 
