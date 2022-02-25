@@ -122,6 +122,7 @@ void MainMenuAdmin() {
 	cout << "||5.Update Product\t\t\t\t\t||\n";
 	cout << "||6.Sort Product\t\t\t\t\t||\n";
 	cout << "||7.Delete Product\t\t\t\t\t||\n";
+	cout << "||8.Exit\t\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
 	string movie[3][8] = {
@@ -141,7 +142,7 @@ void MainMenuAdmin() {
 		float duration;
 		int seat;
 		int hall;
-		bool filter;
+		bool searchFound;
 
 		cout << "Enter selection : ";
 		cin >> choice;
@@ -201,29 +202,26 @@ void MainMenuAdmin() {
 			break;
 		case 3: 
 			
-			for (int i = 0; i < 3; i++) {
+			/*for (int i = 0; i < 3; i++) {
 				
-				AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));	
+				AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));	*/
 
 
-				int decision = 1;
-				while (decision != 0) {
-					cout << "Enter Search Keyword : ";
-					cin >> keyword;
+				
+			cout << "Enter Search Keyword : ";
+			cin >> keyword;
 
-					bool found = SearchMovie(keyword);
-					/*if (found == true) {
-						break;
-					}
-
-					if (found == false) {
-						break;
-					}*/
-					cout << "Enter 1 to continue; 0 to stop : ";
-					cin >> decision;
-				}
+			searchFound = SearchMovie(keyword);
+			/*if (found == true) {
 				break;
 			}
+
+			if (found == false) {
+				break;
+			}*/
+					
+			
+			//}
 			
 			
 
@@ -231,8 +229,8 @@ void MainMenuAdmin() {
 		case 4:
 			cout << "please enter the category you want to search(Romance, Comedy, Action) :";
 			cin >> keyword;
-			filter = FilterMovie(keyword);
-			if (filter = true) {
+			searchFound = FilterMovie(keyword);
+			if (searchFound = true) {
 				MainMenuAdmin();
 			}
 			else {
@@ -247,9 +245,11 @@ void MainMenuAdmin() {
 			break;
 		case 7: DeleteMovie();
 			break;*/
+		case 8: 
+			break;
 			default: 
-				cout << "Invalid, Please Try Again";
-				break;
+				cout << "Invalid, Please Try Again" << endl;
+				MainMenuAdmin();
 		}
 	
 	
@@ -262,10 +262,11 @@ void MainMenuCustomer() {
 	cout << "||======================================================||\n";
 	cout << "||\t\t\tMENU\t\t\t\t||\n";
 	cout << "||======================================================||\n";
-	cout << "||1.Add Purchase\t\t\t\t\t\t||\n";
+	cout << "||1.Add Purchase\t\t\t\t\t||\n";
 	cout << "||2.View Purchase\t\t\t\t\t||\n";
 	cout << "||3.Sort Purchases\t\t\t\t\t||\n";
 	cout << "||4.Purchase Detail\t\t\t\t\t||\n";
+	cout << "||5.Exit\t\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
 	
@@ -334,8 +335,11 @@ void MainMenuCustomer() {
 				//break;
 			/*case 4: DisplayDetail();
 				break;*/
-			default: cout << "Invalid, Please Try Again";
-				break;
+		case 5:
+			break;
+
+			default: cout << "Invalid, Please Try Again" << endl;
+				MainMenuCustomer();
 		}
 	
 }
@@ -401,25 +405,30 @@ bool SearchMovie(string keyword) {
 
 	while (temp != NULL) {
 		if (temp->movieId == keyword) {
-			cout << temp->movieId << " " << temp->movieName << " " << temp->movieDate << " " <<
-				temp->movieTime << " " << temp->movieDuration << " " << temp->categories << " " <<
-				temp->numOfSeat << " " << temp->hall << endl;
+			cout << temp->movieId << "-" << temp->movieName << "-"
+				<< temp->movieDate << "-" << temp->movieTime << "-" << temp->categories << "-" << temp->movieDuration
+				<< "-" << temp->numOfSeat << "-" << temp->hall << endl;
+
+			temp = temp->nextAddress;
 			flag = 1;
-			return true;
 
-			break;
-		} 
-
-		if (flag == 0) {
-			cout << "Movie Not Found .." << endl ;
-		
-			return false;
-
-			break;
 		}
-
-		temp = temp->nextAddress;
+		else {
+			temp = temp->nextAddress;
+		}
 	}
+
+	if (flag == 0) {
+		cout << "Movie Not Found .." << endl ;
+		
+		return false;
+	}
+	else {
+		return true;
+	}
+
+		
+	
 }
 
 //Filter Movie
@@ -629,10 +638,12 @@ void TicketPurchase(string id, string seat, string movieId, float ticketPrice) {
 void ViewTicket() {
 	Ticket* temp = ticketTail;
 
+	cout << "Ticket ID\tSeat\tMovie Id\tTicket Price" << endl;
 	while (temp != NULL) {
-		cout << temp->ticketId << "-" << temp->seat << "-" << temp->movieId << "-" << temp->ticketPrice << endl;
+		cout << temp->ticketId << "\t\t" << temp->seat << "\t" << temp->movieId << "\t\t" << temp->ticketPrice << endl;
 		temp = temp->previous;
 	}
+	MainMenuCustomer();
 }
 
 //Sort Purchase Transaction based on total price
