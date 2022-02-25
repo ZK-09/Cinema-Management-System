@@ -201,27 +201,22 @@ void MainMenuAdmin() {
 			MainMenuAdmin();
 			break;
 		case 3: 
-			
-			/*for (int i = 0; i < 3; i++) {
-				
-				AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));	*/
-
-
-				
+							
 			cout << "Enter Search Keyword : ";
 			cin >> keyword;
-
+			cout << endl;
 			searchFound = SearchMovie(keyword);
-			/*if (found == true) {
-				break;
-			}
+			if (searchFound == true) {
+				system("pause");
+				system("CLS");
+				MainMenuAdmin();
 
-			if (found == false) {
-				break;
-			}*/
+			} else {
+				cout << "Movie Id not found, enter again :";
+				cin >> keyword;
+				SearchMovie(keyword);
+			}
 					
-			
-			//}
 			
 			
 
@@ -230,10 +225,12 @@ void MainMenuAdmin() {
 			cout << "please enter the category you want to search(Romance, Comedy, Action) :";
 			cin >> keyword;
 			searchFound = FilterMovie(keyword);
-			if (searchFound = true) {
+			if (searchFound == true) {
+				system("pause");
+				system("CLS");
 				MainMenuAdmin();
-			}
-			else {
+
+			} else {
 				cout << "please enter the category you want to search(Romance, Comedy, Action) :";
 				cin >> keyword;
 				FilterMovie(keyword);
@@ -424,6 +421,8 @@ bool SearchMovie(string keyword) {
 		return false;
 	}
 	else {
+		cout << "Do you want to return to menu ?" << endl;
+		cout << "Enter 1 to return; 0 to exit : ";
 		return true;
 	}
 
