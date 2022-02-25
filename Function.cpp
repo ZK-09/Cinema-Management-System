@@ -74,41 +74,7 @@ void login() {
 
 }
 
-//void CreateData() {
-//	string movieId[] = {"M0001","M0002","M0003"};
-//	string movieName[] = { "Harry Potter","Friends","Till We Meet Again" };
-//	string movieDate[] = { "29-9-2022","18-6-2022","2-2-2022" };
-//	string movieTime[] = { "1830","1400","1000" };
-//	string categories[] = { "Comedy","Comedy","Romance" };
-//	float movieDuration[] = { 3,4,2 };
-//	int numOfSeat[] = {100,75,66};
-//	int hall[] = {3,1,4 };
-//
-//	for (int i = 0; i < 3; i++) {
-//		Movie newMovie =  Movie();
-//		newMovie.movieId = movieId[i];
-//		newMovie.movieName = movieName[i];
-//		newMovie.movieDate = movieDate[i];
-//		newMovie.movieTime = movieTime[i];
-//		newMovie.categories = categories[i];
-//		newMovie.movieDuration = movieDuration[i];
-//		newMovie.numOfSeat = numOfSeat[i];
-//		newMovie.hall = hall[i];
-//	}
-//	
-//
-//	string ticketId[] = {"T9001","T9056","T9002"};		
-//	string seat[] = { "A45","D22","C78" };			
-//	string movieId[] = { "M0001","M0001","M0001" };			
-//	float ticketPrice[] = { 109.00, 25.00, 50.50};
-//	for (int i = 0; i < 3; i++) {
-//		Ticket newTicket = Ticket();
-//		newTicket.ticketId = ticketId[i];
-//		newTicket.seat = seat[i];
-//		newTicket.movieId = movieId[i];
-//		newTicket.ticketPrice = ticketPrice[i];
-//	}
-//}
+
 
 bool FilterMovie(string keywordFilter);
 
@@ -285,7 +251,7 @@ void MainMenuCustomer() {
 	string seat;
 	string movieId;
 	float ticketPrice;
-
+	bool ticketChecker;
 	int decision = 1;
 
 	cout << "Enter selection : ";
@@ -326,8 +292,23 @@ void MainMenuCustomer() {
 
 			//case 3: SortTicketPrice();
 				//break;
-			/*case 4: DisplayDetail();
-				break;*/
+			case 4: 
+				cout << "please enter the ticket ID :";
+				cin >> id;
+				ticketChecker = DisplayDetail(id);
+				if (ticketChecker == true) {
+					system("pause");
+					system("CLS");
+					MainMenuCustomer();
+
+				}
+				else {
+					cout << "please enter the ticket ID :";
+					cin >> id;
+					ticketChecker = DisplayDetail(id);
+				}
+				
+				break;
 		case 5:
 			break;
 
@@ -647,11 +628,20 @@ void SortTicketPrice(string idd, string seat, string movieId) {
 //View Purchase Details
 bool DisplayDetail(string TicketIdentifier) {
 	Ticket* temp = ticketHead;
+
 	bool succesCount = 0;
+	//bool moviesearcher;
+
 	while (temp != NULL)
 	{
+
 		if (temp->ticketId == TicketIdentifier) {
-			cout << temp->ticketId << "-" << temp->seat << "-" << temp->movieId << "-" << temp->ticketPrice << endl;
+
+			cout << "ticket found, ticket detail is : ";
+			cout << temp->ticketId << "\t" << temp->seat << "\t" << temp->movieId << "\t" << temp->ticketPrice << endl;
+			cout << "the movie in this ticket is : ";
+			bool moviewsearcher = SearchMovie(temp->movieId);
+
 			temp = temp->nextAddress;
 			succesCount = 1;
 		}
@@ -661,6 +651,7 @@ bool DisplayDetail(string TicketIdentifier) {
 		}
 	}
 	if (succesCount = 1) {
+
 		cout << "details displayed, returning to main menu" << endl;
 		return true;
 	}
