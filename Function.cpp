@@ -239,13 +239,11 @@ void MainMenuAdmin() {
 		MainMenuAdmin();
 		break;
 	case 7:
-		cout << "Please enter the Movie Id you want to delete";
+		cout << "Please enter the Movie Id you want to delete : ";
 		cin >> keyword;
 
 		searchFound = DeleteMovie(keyword);
 		if (searchFound == true) {
-			system("pause");
-			DisplayMoive();
 
 			system("pause");
 			system("CLS");
@@ -254,9 +252,9 @@ void MainMenuAdmin() {
 		}
 		else {
 			while (searchFound == false) {
-				cout << "Please enter the Movie Id you want to delete";
+				cout << "Please enter the Movie Id you want to delete : ";
 				cin >> keyword;
-				searchFound = FilterMovie(keyword);
+				searchFound = DeleteMovie(keyword);
 			}
 
 			system("pause");
@@ -463,8 +461,9 @@ bool FilterMovie(string keywordFilter) {
 	bool succesCount = false;
 	while (temp != NULL)
 	{
+
 		if (temp->categories == keywordFilter) {
-			cout << "Movie ID-Movie Name-Movie Date-Movie Time-Movie Categories-Movie Duration-Movie Seat-Movie Hall" << endl;
+			
 			cout << temp->movieId << "-" << temp->movieName << "-"
 				<< temp->movieDate << "-" << temp->movieTime << "-" << temp->categories << "-" << temp->movieDuration
 				<< "-" << temp->numOfSeat << "-" << temp->hall << endl;
@@ -642,8 +641,9 @@ bool DeleteMovie(string keyword) {
 	while (temp != NULL)
 	{
 		if (temp->movieId == keyword) {
-
+			// it have 3 cases
 			if (temp->previous == NULL) {
+				// delete from front
 				deletefromfront();
 				succesCount = true;
 				break;
@@ -651,12 +651,14 @@ bool DeleteMovie(string keyword) {
 			}
 			else if (temp->nextAddress == NULL)
 			{
+				//delete from end
 				deletefromEnd();
 				succesCount = true;
 				break;
 			}
 			else
 			{
+				//delete form specific location
 				deletefromspecificlocation(keyword);
 				succesCount = true;
 				break;
@@ -669,7 +671,6 @@ bool DeleteMovie(string keyword) {
 		}
 	}
 	if (succesCount == true) {
-		cout << "deleted successfully, viewing the list after delete" << endl;
 		return true;
 	}
 	else {
