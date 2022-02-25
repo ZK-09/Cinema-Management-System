@@ -122,6 +122,7 @@ void MainMenuAdmin() {
 	cout << "||5.Update Product\t\t\t\t\t||\n";
 	cout << "||6.Sort Product\t\t\t\t\t||\n";
 	cout << "||7.Delete Product\t\t\t\t\t||\n";
+	cout << "||8.Exit\t\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
 	string movie[3][8] = {
@@ -247,6 +248,8 @@ void MainMenuAdmin() {
 			break;
 		case 7: DeleteMovie();
 			break;*/
+		case 8: 
+			break;
 			default: 
 				cout << "Invalid, Please Try Again";
 				break;
@@ -266,7 +269,8 @@ void MainMenuCustomer() {
 	cout << "||2.View Purchase\t\t\t\t\t||\n";
 	cout << "||3.Sort Purchases\t\t\t\t\t||\n";
 	cout << "||4.Purchase Detail\t\t\t\t\t||\n";
-	cout << "||==============================================	========||\n\n";
+	cout << "||5.Exit\t\t\t\t\t\t||\n";
+	cout << "||======================================================||\n\n";
 
 	
 	string ticket[3][4] = {
@@ -334,6 +338,9 @@ void MainMenuCustomer() {
 				//break;
 			/*case 4: DisplayDetail();
 				break;*/
+		case 5:
+			break;
+
 			default: cout << "Invalid, Please Try Again";
 				break;
 		}
@@ -633,6 +640,7 @@ void ViewTicket() {
 		cout << temp->ticketId << "-" << temp->seat << "-" << temp->movieId << "-" << temp->ticketPrice << endl;
 		temp = temp->previous;
 	}
+	MainMenuCustomer();
 }
 
 //Sort Purchase Transaction based on total price
