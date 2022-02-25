@@ -106,6 +106,8 @@ void login() {
 //	}
 //}
 
+bool FilterMovie(string keywordFilter);
+
 //Admin Menu Function
 void MainMenuAdmin() {
 	cout << "||======================================================||\n";
@@ -139,6 +141,7 @@ void MainMenuAdmin() {
 		float duration;
 		int seat;
 		int hall;
+		bool filter;
 
 		cout << "Enter selection : ";
 		cin >> choice;
@@ -194,6 +197,7 @@ void MainMenuAdmin() {
 				break;
 
 		case 2: DisplayMoive();
+			MainMenuAdmin();
 			break;
 		case 3: 
 			
@@ -224,12 +228,18 @@ void MainMenuAdmin() {
 			
 
 			break;
-		case 4: 
-			string keyword;
-			cout << "Enter the Genre you want to filter(example: Romance, Comedy, Action) : ";
+		case 4:
+			cout << "please enter the category you want to search(Romance, Comedy, Action) :";
 			cin >> keyword;
-			FilterMovie(keyword);
-			if (FilterMovie)
+			filter = FilterMovie(keyword);
+			if (filter = true) {
+				MainMenuAdmin();
+			}
+			else {
+				cout << "please enter the category you want to search(Romance, Comedy, Action) :";
+				cin >> keyword;
+				FilterMovie(keyword);
+			}
 			break;
 		/*case 5: UpdateMovie();
 			break;*/
@@ -431,7 +441,7 @@ bool FilterMovie(string keywordFilter) {
 		}
 	}
 	if (succesCount = 1) {
-		cout << "category found, return to the main menu? 1. yes 0. no" << endl;
+		cout << "category found, returning to main menu" << endl;
 		return true;
 	}
 	else {
