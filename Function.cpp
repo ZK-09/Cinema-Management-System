@@ -61,11 +61,15 @@ void login() {
 		system("CLS");
 		//Call Admin Menu (Manage Movie)
 		MainMenuAdmin();
-	} else {
-
+	}
+	else if ((username == "Cus") && (password == "Cus")) {
 		system("CLS");
 		//Call Customer Menu (Purchase Ticket)
 		MainMenuCustomer();
+	
+	} else {
+
+		cout << "You have to login with an account"
 	}
 
 }
@@ -206,8 +210,8 @@ void MainMenuAdmin() {
 			cin >> keyword;
 			cout << endl;
 			searchFound = SearchMovie(keyword);
+
 			if (searchFound == true) {
-				system("pause");
 				system("CLS");
 				MainMenuAdmin();
 
@@ -369,7 +373,7 @@ void AddMovie(string id, string name, string date, string times, string cat, flo
 
 void ViewMovie() {
 	Movie* temp = movieTail;
-
+	cout << "Movie ID\tMovie Name\tMovie Date\tMovie Time\tMovie Categories\tMovie Duration\tMovie Seat\tMovie Hall" << endl;
 	while (temp != NULL) {
 		cout << temp->movieId << "-" << temp->movieName << "-" << temp->movieDate << "-" << temp->movieTime
 			<< "-" << temp->categories << "-" << temp->movieDuration << "-" << temp->numOfSeat << "-" << temp->hall << endl;
@@ -421,8 +425,6 @@ bool SearchMovie(string keyword) {
 		return false;
 	}
 	else {
-		cout << "Do you want to return to menu ?" << endl;
-		cout << "Enter 1 to return; 0 to exit : ";
 		return true;
 	}
 
