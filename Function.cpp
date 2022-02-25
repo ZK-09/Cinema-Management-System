@@ -92,13 +92,6 @@ void MainMenuAdmin() {
 	cout << "||8.Exit\t\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
-	//string movie[3][8] = {
-	//	{"M0001","Harry Potter","29-9-2022","1830", "Comedy", "3","100","3"},
-	//	{"M0002","Friends","18-6-2022","1400","Comedy", "4","75","1"},
-	//	{"M0003","Till We Meet Again","2-2-2022","1000","Romance", "2","66","4"}
-	//};
-
-
 	int choice;
 
 	/* Movie Add Variables*/
@@ -274,15 +267,6 @@ void MainMenuCustomer() {
 	cout << "||5.Exit\t\t\t\t\t\t||\n";
 	cout << "||======================================================||\n\n";
 
-
-	//string ticket[3][4] = {
-	//	{"T9001", "A45", "M0001", "109.00"},
-	//	{"T9056", "D22", "M0001", "25.00"},
-	//	{"T9001", "C78", "M0001", "50.50"}
-	//};
-
-
-
 	int choice;
 
 	string id;
@@ -353,7 +337,8 @@ void MainMenuCustomer() {
 	case 5:
 		break;
 
-	default: cout << "Invalid, Please Try Again" << endl;
+	default: 
+		cout << "Invalid, Please Try Again" << endl;
 		MainMenuCustomer();
 	}
 
@@ -361,8 +346,7 @@ void MainMenuCustomer() {
 
 /* Admin Management Functions (Movie Management) */
 
-
-//Add Movie --> Insert into sorted list
+//Add Movie --> Insert to front
 void AddMovie(string id, string name, string date, string times, string cat, float duration, int seat, int hall) {
 
 	Movie* newNode = createMovieNode(id, name, date, times, cat, duration, seat, hall);
@@ -370,7 +354,7 @@ void AddMovie(string id, string name, string date, string times, string cat, flo
 	newNode->nextAddress = NULL;
 	newNode->previous = NULL;
 
-	//Sorted list still do not have any item
+	
 	if (movieHead == NULL) {
 
 		movieHead = movieTail = newNode;
@@ -799,7 +783,7 @@ void ViewTicket() {
 		cout << temp->ticketId << "\t\t" << temp->seat << "\t" << temp->movieId << "\t\t" << temp->ticketPrice << endl;
 		temp = temp->previous;
 	}
-	MainMenuCustomer();
+	
 }
 
 //Sort Purchase Transaction based on total price
