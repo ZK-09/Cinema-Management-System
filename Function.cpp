@@ -127,7 +127,10 @@ void MainMenuAdmin() {
 		{"M0002","Friends","18-6-2022","1400","Comedy", "4","75","1"},
 		{"M0003","Till We Meet Again","2-2-2022","1000","Romance", "2","66","4"}
 	};
+	/*for (int i = 0; i < 3; i++) {
 
+		AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));
+	}*/
 	int choice;
 
 		/* Movie Add Variables*/
@@ -190,8 +193,8 @@ void MainMenuAdmin() {
 		
 				break;
 
-		/*case 2: DisplayMoive();
-			break;*/
+		case 2: DisplayMoive();
+			break;
 		case 3: 
 			
 			for (int i = 0; i < 3; i++) {
@@ -221,8 +224,13 @@ void MainMenuAdmin() {
 			
 
 			break;
-		/*case 4: FilterMovie(keywordFilter);
-			break;*/
+		case 4: 
+			string keyword;
+			cout << "Enter the Genre you want to filter(example: Romance, Comedy, Action) : ";
+			cin >> keyword;
+			FilterMovie(keyword);
+			if (FilterMovie)
+			break;
 		/*case 5: UpdateMovie();
 			break;*/
 		/*case 6: SortMovie();
@@ -361,7 +369,7 @@ void ViewMovie() {
 //Display Movie
 void DisplayMoive() {
 
-	Movie* temp = newMovieHead;
+	Movie* temp = movieHead;
 
 	while (temp != NULL)
 	{
@@ -405,8 +413,32 @@ bool SearchMovie(string keyword) {
 }
 
 //Filter Movie
-void FilterMovie(string keywordFilter) {
-
+bool FilterMovie(string keywordFilter) {
+	Movie* temp = movieHead;
+	bool succesCount = 0;
+	while (temp != NULL)
+	{
+		if (temp->categories == keywordFilter) {
+			cout << temp->movieId << "-" << temp->movieName << "-"
+				<< temp->movieDate << "-" << temp->movieTime << "-" << temp->categories << "-" << temp->movieDuration
+				<< "-" << temp->numOfSeat << "-" << temp->hall << endl;
+			temp = temp->nextAddress;
+			succesCount = 1;
+		}
+		else
+		{
+			temp = temp->nextAddress;
+		}
+	}
+	if (succesCount = 1) {
+		cout << "category found, return to the main menu? 1. yes 0. no" << endl;
+		return true;
+	}
+	else {
+		cout << "category not found, please try again" << endl;
+		return false;
+	}
+	
 }
 
 //Update Movie ID
