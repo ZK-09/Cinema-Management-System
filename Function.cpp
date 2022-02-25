@@ -448,7 +448,7 @@ bool SearchMovie(string keyword) {
 //Filter Movie
 bool FilterMovie(string keywordFilter) {
 	Movie* temp = movieHead;
-	bool succesCount = 0;
+	bool succesCount = false;
 	while (temp != NULL)
 	{
 		if (temp->categories == keywordFilter) {
@@ -463,13 +463,14 @@ bool FilterMovie(string keywordFilter) {
 			temp = temp->nextAddress;
 		}
 	}
-	if (succesCount = 1) {
-		cout << "category found, returning to main menu" << endl;
-		return true;
-	}
-	else {
+	if (succesCount = false) {
 		cout << "category not found, please try again" << endl;
 		return false;
+		
+	}
+	else {
+		cout << "category found, returning to main menu" << endl;
+		return true;
 	}
 
 }
@@ -629,7 +630,6 @@ bool DeleteMovie(string keyword) {
 		if (temp->movieId == keyword) {
 
 			if (temp->previous == NULL) {
-				cout << "first one" << endl;
 				deletefromfront();
 				succesCount = true;
 				break;
@@ -637,14 +637,12 @@ bool DeleteMovie(string keyword) {
 			}
 			else if (temp->nextAddress == NULL)
 			{
-				cout << "last one" << endl;
 				deletefromEnd();
 				succesCount = true;
 				break;
 			}
 			else
 			{
-				cout << "middle one" << endl;
 				deletefromspecificlocation(keyword);
 				succesCount = true;
 				break;
