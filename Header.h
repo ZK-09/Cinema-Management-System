@@ -41,7 +41,7 @@ void AddMovie(string id, string name, string date, string times, string cat, flo
 void DisplayMoive();
 void ViewMovie();
 bool SearchMovie(string keyword);
-void displayFromFront();
+void DisplayTicket();
 void UpdateMovie();
 void IdUpdate(Movie* temp);
 void TicketPurchase(string id, string seat, string movieId, float ticketPrice);

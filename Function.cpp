@@ -237,7 +237,7 @@ void MainMenuAdmin() {
 			} else {
 				cout << "please enter the category you want to search(Romance, Comedy, Action) :";
 				cin >> keyword;
-				filter = FilterMovie(keyword);
+				searchFound = FilterMovie(keyword);
 			}
 			break;
 		/*case 5: UpdateMovie();
@@ -277,7 +277,7 @@ void MainMenuCustomer() {
 		{"T9001", "C78", "M0001", "50.50"}
 	};
 
-	ticketHead = ticketTail = NULL;
+	
 
 	int choice;	
 
@@ -294,11 +294,7 @@ void MainMenuCustomer() {
 	switch (choice) {
 		case 1: 
 		
-			for (int i = 0; i < 3; i++) {
-
-				TicketPurchase(ticket[i][0], ticket[i][1], ticket[i][2], stoi(ticket[i][3]));		
-			}
-			displayFromFront();
+			
 
 			while (decision != 0) {
 
@@ -324,11 +320,7 @@ void MainMenuCustomer() {
 			break;
 		case 2: 
 
-			for (int i = 0; i < 3; i++)
-			{
-				TicketPurchase((ticket[i][0]), ticket[i][1], ticket[i][2], stoi(ticket[i][3]));
-			}
-			ViewTicket();
+			DisplayTicket();
 
 			break;
 
@@ -603,7 +595,7 @@ void DeleteMovie() {
 /* Customer Purchasing Functions (Purchasing Ticket) */
 
 //Display From Front
-void displayFromFront() {
+void DisplayTicket() {
 	Ticket* temp = ticketHead;
 
 	while (temp != NULL) {

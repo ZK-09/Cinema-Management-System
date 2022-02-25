@@ -11,7 +11,15 @@ int main() {
 		AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));
 	}
 
-
+	string ticket[3][4] = {
+		{"T9001", "A45", "M0001", "109.00"},
+		{"T9056", "D22", "M0001", "25.00"},
+		{"T9001", "C78", "M0001", "50.50"}
+	};
+	for (int i = 0; i < 3; i++)
+	{
+		TicketPurchase((ticket[i][0]), ticket[i][1], ticket[i][2], stoi(ticket[i][3]));
+	}
 	login();	//User Login
 
 
