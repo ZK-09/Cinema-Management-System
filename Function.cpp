@@ -416,10 +416,10 @@ void DisplayMoive() {
 //Search Movie
 bool SearchMovie(string keyword) {
 
-	Movie* temp = movieHead;
+	Movie* temp = movieHead;	//Assign Movie struct
 	int flag = 0;
 
-	while (temp != NULL) {
+	while (temp != NULL) {		//Read all the data using temp
 		if (temp->movieId == keyword) {
 			cout << temp->movieId << "-" << temp->movieName << "-"
 				<< temp->movieDate << "-" << temp->movieTime << "-" << temp->categories << "-" << temp->movieDuration
@@ -434,12 +434,12 @@ bool SearchMovie(string keyword) {
 		}
 	}
 
-	if (flag == 0) {
+	if (flag == 0) {		//Not Found Return false
 		cout << "Movie Not Found .." << endl;
 
 		return false;
 	}
-	else {
+	else {					//Found True
 		return true;
 	}
 }
