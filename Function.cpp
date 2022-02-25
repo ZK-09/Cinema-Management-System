@@ -108,6 +108,7 @@ void MainMenuAdmin() {
 	int seat;
 	int hall;
 	bool searchFound;
+	bool flag;
 
 	cout << "Enter selection : ";
 	cin >> choice;
@@ -217,7 +218,10 @@ void MainMenuAdmin() {
 
 		if (searchFound == true) {
 			UpdateMovie();
-
+			
+		}
+		else {
+			cout << "Movie Not Found";
 		}
 
 		break;
@@ -232,6 +236,7 @@ void MainMenuAdmin() {
 		if (searchFound == true) {
 			system("pause");
 			DisplayMoive();
+
 			system("pause");
 			system("CLS");
 			MainMenuAdmin();
@@ -394,8 +399,8 @@ void DisplayMoive() {
 	while (temp != NULL)
 	{
 		cout << temp->movieId << "-" << temp->movieName << "-"
-			<< temp->movieDate << "-" << temp->movieTime << "-" << temp->movieDuration
-			<< "-" << temp->numOfSeat << "-" << temp->hall << endl;
+			<< temp->movieDate << "-" << temp->movieTime << "-" << temp->categories << "-" 
+			<< temp->movieDuration << "-" << temp->numOfSeat << "-" << temp->hall << endl;
 
 		temp = temp->nextAddress;
 	}
@@ -467,7 +472,7 @@ bool FilterMovie(string keywordFilter) {
 void IdUpdate(Movie* temp) {
 	cout << "Enter New Movie ID : ";
 	getline(cin, temp->movieId);
-
+	
 	cout << endl << "Update Successfullly." << endl;
 }
 
