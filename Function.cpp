@@ -108,7 +108,6 @@ void MainMenuAdmin() {
 	int seat;
 	int hall;
 	bool searchFound;
-	bool flag;
 
 	cout << "Enter selection : ";
 	cin >> choice;
