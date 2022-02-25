@@ -141,7 +141,7 @@ void MainMenuAdmin() {
 		float duration;
 		int seat;
 		int hall;
-		bool filter;
+		bool searchFound;
 
 		cout << "Enter selection : ";
 		cin >> choice;
@@ -201,29 +201,26 @@ void MainMenuAdmin() {
 			break;
 		case 3: 
 			
-			for (int i = 0; i < 3; i++) {
+			/*for (int i = 0; i < 3; i++) {
 				
-				AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));	
+				AddMovie(movie[i][0], movie[i][1], movie[i][2], movie[i][3], movie[i][4], stoi(movie[i][5]), stoi(movie[i][6]), stoi(movie[i][7]));	*/
 
 
-				int decision = 1;
-				while (decision != 0) {
-					cout << "Enter Search Keyword : ";
-					cin >> keyword;
+				
+			cout << "Enter Search Keyword : ";
+			cin >> keyword;
 
-					bool found = SearchMovie(keyword);
-					/*if (found == true) {
-						break;
-					}
-
-					if (found == false) {
-						break;
-					}*/
-					cout << "Enter 1 to continue; 0 to stop : ";
-					cin >> decision;
-				}
+			searchFound = SearchMovie(keyword);
+			/*if (found == true) {
 				break;
 			}
+
+			if (found == false) {
+				break;
+			}*/
+					
+			
+			//}
 			
 			
 
@@ -231,8 +228,8 @@ void MainMenuAdmin() {
 		case 4:
 			cout << "please enter the category you want to search(Romance, Comedy, Action) :";
 			cin >> keyword;
-			filter = FilterMovie(keyword);
-			if (filter = true) {
+			searchFound = FilterMovie(keyword);
+			if (searchFound = true) {
 				MainMenuAdmin();
 			}
 			else {
@@ -401,25 +398,30 @@ bool SearchMovie(string keyword) {
 
 	while (temp != NULL) {
 		if (temp->movieId == keyword) {
-			cout << temp->movieId << " " << temp->movieName << " " << temp->movieDate << " " <<
-				temp->movieTime << " " << temp->movieDuration << " " << temp->categories << " " <<
-				temp->numOfSeat << " " << temp->hall << endl;
+			cout << temp->movieId << "-" << temp->movieName << "-"
+				<< temp->movieDate << "-" << temp->movieTime << "-" << temp->categories << "-" << temp->movieDuration
+				<< "-" << temp->numOfSeat << "-" << temp->hall << endl;
+
+			temp = temp->nextAddress;
 			flag = 1;
-			return true;
 
-			break;
-		} 
-
-		if (flag == 0) {
-			cout << "Movie Not Found .." << endl ;
-		
-			return false;
-
-			break;
 		}
-
-		temp = temp->nextAddress;
+		else {
+			temp = temp->nextAddress;
+		}
 	}
+
+	if (flag == 0) {
+		cout << "Movie Not Found .." << endl ;
+		
+		return false;
+	}
+	else {
+		return true;
+	}
+
+		
+	
 }
 
 //Filter Movie
