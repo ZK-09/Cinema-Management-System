@@ -253,9 +253,15 @@ void MainMenuAdmin() {
 
 		}
 		else {
-			cout << "Please enter the Movie Id you want to delete";
-			cin >> keyword;
-			searchFound = DeleteMovie(keyword);
+			while (searchFound == false) {
+				cout << "Please enter the Movie Id you want to delete";
+				cin >> keyword;
+				searchFound = FilterMovie(keyword);
+			}
+
+			system("pause");
+			system("CLS");
+			MainMenuAdmin();
 		}
 		break;
 	case 8:
@@ -344,11 +350,17 @@ void MainMenuCustomer() {
 
 		}
 		else {
-			cout << "please enter the ticket ID :";
-			cin >> id;
-			ticketChecker = DisplayDetail(id);
-		}
+			while (ticketChecker == false) {
+				cout << "please enter the ticket ID :";
+				cin >> id;
+				ticketChecker = DisplayDetail(id);
+			}
+			system("pause");
+			system("CLS");
+			MainMenuCustomer();
 
+		}
+		
 		break;
 	case 5:
 		break;
