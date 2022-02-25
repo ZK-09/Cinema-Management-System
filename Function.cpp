@@ -226,8 +226,11 @@ void MainMenuAdmin() {
 
 		break;
 
-		/*case 6: SortMovie();
-			break;*/
+	case 6: 
+		SortMovie(&movieHead);
+		
+		DisplayMoive();
+		break;
 	case 7:
 		cout << "Please enter the Movie Id you want to delete";
 		cin >> keyword;
@@ -325,8 +328,11 @@ void MainMenuCustomer() {
 
 		break;
 
-		//case 3: SortTicketPrice();
-			//break;
+	case 3: 
+		
+		SortTicketPrice(&ticketHead);
+		break;
+
 	case 4:
 		cout << "please enter the ticket ID :";
 		cin >> id;
@@ -586,33 +592,31 @@ void UpdateMovie() {
 }
 
 //Sort Movie based on quantity
-void SortMovie() {
+void SortMovie(struct Movie** head) {
+	struct Movie* current = *head , *index = NULL;
 
+	int temp;
 
+	if (head == NULL) {
+		return;
 
-	//int key, currentcolindex; 
+	} else {
+		while (current != NULL) {
+			index = current->nextAddress;
 
-	//for (int roundindex = 1; roundindex < size; roundindex++)
-	//{
-	//	key = billyarrays[roundindex];
-	//	currentcolindex = roundindex;
+			while (index != NULL) {
+				if (current->numOfSeat > index->numOfSeat) {
+					temp = current->numOfSeat;
+					current->numOfSeat = index->numOfSeat;
+					index->numOfSeat = temp;
+				}
 
-	//	//currentcolindex > 0 -> you still got previous items in front of current item
-	//	while (currentcolindex > 0 && billyarrays[currentcolindex - 1] > key)
-	//	{
-	//		billyarrays[currentcolindex] = billyarrays[currentcolindex - 1];
-	//		currentcolindex--;
-	//	}
-	//	billyarrays[currentcolindex] = key;
+				index = index->nextAddress;
+			}
+			current = current->nextAddress;
+		}
 
-	//	
-	//}
-	//cout << "final result shows as below\n";
-	//	for (int i = 0; i < size; i++)
-	//	{
-	//		cout << billyarrays[i] << " , ";
-	//	}
-	//	cout << endl;
+	}
 
 }
 
@@ -701,7 +705,32 @@ void ViewTicket() {
 }
 
 //Sort Purchase Transaction based on total price
-void SortTicketPrice(string idd, string seat, string movieId) {
+void SortTicketPrice(struct Ticket ** head) {
+	/*struct Movie* current = *head , *index = NULL;
+
+	int temp;
+
+	if (head == NULL) {
+		return;
+
+	} else {
+		while (current != NULL) {
+			index = current->nextAddress;
+
+			while (index != NULL) {
+				if (current->numOfSeat > index->numOfSeat) {
+					temp = current->numOfSeat;
+					current->numOfSeat = index->numOfSeat;
+					index->numOfSeat = temp;
+				}
+
+				index = index->nextAddress;
+			}
+			current = current->nextAddress;
+		}
+
+	}*/
+
 
 }
 

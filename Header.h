@@ -51,6 +51,9 @@ bool FilterMovie(string keywordFilter);
 bool DeleteMovie(string keyword);
 void ViewTicket();
 
+void SortMovie(struct Movie** head);
+void SortTicketPrice(struct Ticket** head);
+
 //#endif // !1
 
 
